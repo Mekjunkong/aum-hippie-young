@@ -3,10 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aum Hippie Young — Wild Freedom Adventures</title>
+  <title>Aum Hippie Young — Wild Freedom Adventures | Chiang Mai 4×4 Tours</title>
+  <meta name="description" content="Wild adventure tours in Northern Thailand. 4×4 off-road expeditions, mountain trekking, and survival fire-cooking with Aum the Barbarian Chef. Based in Chiang Mai." />
+  <meta name="keywords" content="Chiang Mai tours, 4x4 Thailand, off-road adventure, mountain trekking Chiang Mai, survival cooking Thailand, aum hippie young" />
+  <meta name="author" content="Aum Hippie Young" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aum-hippie-young.vercel.app" />
+  <meta property="og:title" content="Aum Hippie Young — Wild Freedom Adventures" />
+  <meta property="og:description" content="4×4 off-road, mountain trekking & fire-cooked feasts in Northern Thailand. Guided by Aum the Barbarian Chef." />
+  <meta property="og:image" content="https://aum-hippie-young.vercel.app/og-image.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="th_TH" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aum Hippie Young — Wild Freedom Adventures" />
+  <meta name="twitter:description" content="4×4 off-road, mountain trekking & fire-cooked feasts in Northern Thailand." />
+  <meta name="twitter:image" content="https://aum-hippie-young.vercel.app/og-image.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://aum-hippie-young.vercel.app" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
+    /* ═══════════════════════════════════════
+       RESET & VARIABLES
+    ═══════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -22,32 +53,55 @@
       --white: #FEFCF7;
       --r: 18px;
       --r-sm: 10px;
+      --shadow-terra: 0 4px 24px rgba(192,92,43,0.25);
+      --font-thai: 'Noto Sans Thai', 'DM Sans', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'DM Sans', var(--font-thai), sans-serif;
       background: var(--cream);
       color: var(--black);
       overflow-x: hidden;
     }
+    body[data-lang="th"] .en { display: none; }
+    body[data-lang="th"] .th { display: inline !important; }
+    body[data-lang="en"] .th { display: none; }
+    body[data-lang="en"] .en { display: inline; }
 
-    /* ─── NAV ─────────────────────────── */
+    /* ═══════════════════════════════════════
+       UTILITY
+    ═══════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    @media(max-width:768px){ .container { padding: 0 20px; } }
+
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 48px;
-      background: rgba(245,240,232,0.9);
-      backdrop-filter: blur(14px);
+      padding: 16px 48px;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(192,92,43,0.1);
+      transition: padding 0.3s;
     }
+    nav.scrolled { padding: 10px 48px; }
     .nav-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; font-weight: 900;
+      font-size: 1.25rem; font-weight: 900;
       color: var(--black); letter-spacing: -0.03em;
+      text-decoration: none;
     }
     .nav-logo span { color: var(--terra); }
-    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
     .nav-links a {
       text-decoration: none; color: var(--black-soft);
       font-size: 0.875rem; font-weight: 500;
@@ -61,14 +115,65 @@
     }
     .nav-cta:hover { background: var(--terra) !important; }
 
-    /* ─── HERO ────────────────────────── */
+    /* Lang toggle */
+    .lang-toggle {
+      display: flex; gap: 4px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 50px; padding: 3px;
+    }
+    .lang-btn {
+      padding: 5px 12px; border-radius: 50px;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.05em; cursor: pointer;
+      border: none; background: transparent;
+      color: var(--olive); transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--terra); color: var(--white);
+    }
+
+    /* Mobile menu */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      width: 22px; height: 2px; background: var(--black);
+      border-radius: 2px; transition: all 0.3s;
+    }
+    .nav-mobile {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--cream); z-index: 99;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 28px;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 900;
+      color: var(--black); text-decoration: none;
+    }
+    .nav-mobile-close {
+      position: absolute; top: 20px; right: 24px;
+      font-size: 2rem; background: none; border: none; cursor: pointer;
+    }
+    @media(max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .lang-toggle { display: none; }
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
     .hero {
       min-height: 100vh;
       display: grid; grid-template-columns: 1fr 1fr;
       align-items: center;
       padding: 120px 48px 80px;
-      gap: 60px;
-      position: relative; overflow: hidden;
+      gap: 60px; position: relative; overflow: hidden;
     }
     .hero::before {
       content: '';
@@ -84,7 +189,7 @@
       letter-spacing: 0.06em; text-transform: uppercase;
       margin-bottom: 24px;
     }
-    .hero-badge span { width: 6px; height: 6px; background: var(--terra); border-radius: 50%; display:inline-block; }
+    .hero-badge span { width: 6px; height: 6px; background: var(--terra); border-radius: 50%; }
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3rem, 5.5vw, 5.5rem);
@@ -95,18 +200,27 @@
     .hero h1 em { color: var(--terra); font-style: italic; }
     .hero-sub {
       font-size: 1.05rem; line-height: 1.7;
-      color: var(--olive); max-width: 460px; margin-bottom: 44px;
+      color: var(--olive); max-width: 460px; margin-bottom: 36px;
     }
     .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn-primary {
       background: var(--terra); color: var(--white);
       padding: 16px 36px; border-radius: 50px;
       font-size: 0.95rem; font-weight: 600;
-      text-decoration: none; display: inline-block;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(192,92,43,0.3);
+      box-shadow: var(--shadow-terra);
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(192,92,43,0.4); }
+    .btn-whatsapp {
+      background: #25D366; color: var(--white);
+      padding: 16px 36px; border-radius: 50px;
+      font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    }
+    .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
     .btn-secondary {
       background: transparent; color: var(--black);
       padding: 16px 36px; border-radius: 50px;
@@ -120,8 +234,8 @@
     .hero-right { display: flex; flex-direction: column; gap: 16px; }
     .hero-img-main {
       width: 100%; aspect-ratio: 4/3;
-      border-radius: 24px; overflow: hidden;
-      position: relative;
+      border-radius: 24px; overflow: hidden; position: relative;
+      cursor: pointer;
     }
     .hero-img-main img {
       width: 100%; height: 100%; object-fit: cover;
@@ -150,31 +264,21 @@
       font-size: 1.8rem; font-weight: 900; color: var(--terra);
     }
     .stat-label { font-size: 0.75rem; color: var(--olive); font-weight: 500; margin-top: 2px; }
-
-    /* ─── SECTION SHARED ──────────────── */
-    section { padding: 100px 48px; }
-    .section-label {
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--terra); margin-bottom: 14px;
+    @media(max-width:960px){
+      .hero{grid-template-columns:1fr;padding:100px 24px 60px;gap:36px}
+      .hero-right{order:-1}
     }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 3.2rem);
-      font-weight: 900; line-height: 1.1;
-      letter-spacing: -0.03em; color: var(--black);
-      margin-bottom: 20px;
-    }
-    .section-desc { color: var(--olive); font-size: 1rem; line-height: 1.7; max-width: 560px; }
 
-    /* ─── PHOTO STRIP (below hero) ───── */
+    /* ═══════════════════════════════════════
+       PHOTO STRIP
+    ═══════════════════════════════════════ */
     .photo-strip {
       padding: 0; overflow: hidden;
       display: flex; height: 220px; gap: 8px;
     }
     .strip-img {
       flex: 1; overflow: hidden; position: relative;
-      transition: flex 0.5s ease;
+      transition: flex 0.5s ease; cursor: pointer;
     }
     .strip-img:hover { flex: 2; }
     .strip-img img {
@@ -192,8 +296,69 @@
     }
     .strip-img:hover .strip-label { opacity: 1; }
 
-    /* ─── SERVICES ────────────────────── */
-    .services { background: var(--white); }
+    /* ═══════════════════════════════════════
+       SECTION SHARED
+    ═══════════════════════════════════════ */
+    section { padding: 100px 0; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--terra); margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.03em; color: var(--black);
+      margin-bottom: 20px;
+    }
+    .section-desc { color: var(--olive); font-size: 1rem; line-height: 1.7; max-width: 560px; }
+    .section-header { margin-bottom: 56px; }
+
+    /* ═══════════════════════════════════════
+       HOW IT WORKS
+    ═══════════════════════════════════════ */
+    .how-it-works { background: var(--white); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 32px;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: ''; position: absolute; top: 44px; left: 12%; right: 12%;
+      height: 2px; background: linear-gradient(to right, var(--terra), var(--terra-light));
+      opacity: 0.3;
+    }
+    .step-card { text-align: center; position: relative; }
+    .step-icon {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: var(--terra-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 20px;
+      position: relative; z-index: 2;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--terra);
+    }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--terra); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700; margin-bottom: 8px;
+    }
+    .step-desc { font-size: 0.82rem; color: var(--olive); line-height: 1.6; }
+    @media(max-width:768px){
+      .steps-grid{grid-template-columns:1fr 1fr;gap:28px}
+      .steps-grid::before{display:none}
+    }
+    @media(max-width:480px){ .steps-grid{grid-template-columns:1fr} }
+
+    /* ═══════════════════════════════════════
+       SERVICES / EXPERIENCES
+    ═══════════════════════════════════════ */
+    .services { background: var(--cream); }
     .services-header {
       display: flex; justify-content: space-between; align-items: flex-end;
       margin-bottom: 56px; gap: 40px; flex-wrap: wrap;
@@ -202,43 +367,105 @@
     .service-card {
       border-radius: var(--r); overflow: hidden;
       transition: transform 0.3s, box-shadow 0.3s;
-      position: relative; background: var(--cream);
+      position: relative; background: var(--white);
     }
     .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(192,92,43,0.15); }
     .service-card.featured { background: var(--black); }
     .service-photo {
-      width: 100%; height: 280px; overflow: hidden; position: relative;
+      width: 100%; height: 260px; overflow: hidden; position: relative;
     }
     .service-photo img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.5s ease; cursor: pointer;
     }
     .service-card:hover .service-photo img { transform: scale(1.07); }
-    .service-body { padding: 28px; }
-    .service-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: var(--terra-pale);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; margin-bottom: 16px;
-    }
-    .service-card.featured .service-icon { background: rgba(192,92,43,0.3); }
+    .service-body { padding: 24px; }
     .service-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.25rem; font-weight: 700;
-      margin-bottom: 10px; color: var(--black);
+      font-size: 1.2rem; font-weight: 700;
+      margin-bottom: 8px; color: var(--black);
     }
     .service-card.featured .service-name { color: var(--cream); }
-    .service-desc { font-size: 0.875rem; line-height: 1.65; color: var(--olive); margin-bottom: 20px; }
+    .service-desc { font-size: 0.85rem; line-height: 1.65; color: var(--olive); margin-bottom: 16px; }
     .service-card.featured .service-desc { color: var(--sand); }
-    .service-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
     .service-tag {
-      background: var(--white); color: var(--black-soft);
+      background: var(--cream); color: var(--black-soft);
       font-size: 0.72rem; font-weight: 600;
       padding: 4px 11px; border-radius: 50px; letter-spacing: 0.04em;
     }
     .service-card.featured .service-tag { background: rgba(255,255,255,0.1); color: var(--cream); }
+    .service-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 900; color: var(--terra);
+      margin-bottom: 12px;
+    }
+    .service-price small { font-size: 0.75rem; font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--olive); }
+    .service-card.featured .service-price { color: var(--terra-light); }
+    .service-book {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--terra); color: var(--white);
+      padding: 10px 24px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 700;
+      text-decoration: none; transition: background 0.2s;
+      border: none; cursor: pointer;
+    }
+    .service-card.featured .service-book { background: var(--terra-light); }
+    .service-book:hover { background: var(--terra-light); }
+    @media(max-width:960px){ .services-grid{grid-template-columns:1fr} }
 
-    /* ─── CHEF STORY ──────────────────── */
+    /* ═══════════════════════════════════════
+       WHAT TO BRING
+    ═══════════════════════════════════════ */
+    .what-to-bring { background: var(--white); }
+    .bring-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+    .bring-card {
+      border-radius: var(--r); padding: 32px;
+      background: var(--cream); border: 1px solid rgba(192,92,43,0.1);
+    }
+    .bring-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .bring-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 16px;
+    }
+    .bring-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .bring-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.875rem; color: var(--black-soft); line-height: 1.5;
+    }
+    .bring-list li::before { content: '✓'; color: var(--terra); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    @media(max-width:768px){ .bring-grid{grid-template-columns:1fr} }
+
+    /* ═══════════════════════════════════════
+       VIDEO SECTION
+    ═══════════════════════════════════════ */
+    .video-section {
+      background: var(--black);
+      position: relative; overflow: hidden;
+    }
+    .video-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(192,92,43,0.15) 0%, transparent 70%);
+    }
+    .video-inner {
+      position: relative; z-index: 2;
+      text-align: center;
+    }
+    .video-section .section-label { color: var(--terra-light); }
+    .video-section .section-title { color: var(--cream); }
+    .video-section .section-desc { color: var(--sand); margin: 0 auto 48px; }
+    .video-wrapper {
+      max-width: 800px; margin: 0 auto;
+      aspect-ratio: 16/9;
+      border-radius: 20px; overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .video-wrapper iframe { width: 100%; height: 100%; border: none; }
+
+    /* ═══════════════════════════════════════
+       CHEF STORY
+    ═══════════════════════════════════════ */
     .chef-story {
       background: var(--cream-dark);
       display: grid; grid-template-columns: 1fr 1fr;
@@ -248,6 +475,7 @@
     .chef-img {
       width: 100%; aspect-ratio: 3/4;
       border-radius: 24px; overflow: hidden; position: relative;
+      cursor: pointer;
     }
     .chef-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
     .chef-name-badge {
@@ -275,8 +503,11 @@
     .skill-ico { font-size: 1.4rem; }
     .skill-text { font-size: 0.9rem; color: var(--black-soft); font-weight: 500; }
     .skill-text span { display: block; font-size: 0.78rem; color: var(--olive); font-weight: 400; margin-top: 2px; }
+    @media(max-width:960px){ .chef-story{grid-template-columns:1fr;gap:40px} }
 
-    /* ─── GALLERY GRID ────────────────── */
+    /* ═══════════════════════════════════════
+       GALLERY GRID
+    ═══════════════════════════════════════ */
     .gallery { background: var(--white); padding: 80px 0; }
     .gallery-header { padding: 0 48px; margin-bottom: 40px; }
     .gallery-grid {
@@ -285,39 +516,219 @@
       grid-template-rows: 200px 200px;
       gap: 8px; padding: 0 48px;
     }
-    .gallery-cell { overflow: hidden; border-radius: 12px; position: relative; }
+    .gallery-cell { overflow: hidden; border-radius: 12px; position: relative; cursor: pointer; }
     .gallery-cell:first-child { grid-column: span 2; grid-row: span 2; }
-    .gallery-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .gallery-cell img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s ease;
+    }
     .gallery-cell:hover img { transform: scale(1.06); }
-
-    /* ─── LOGOS CAROUSEL ──────────────── */
-    .logos-section { background: var(--terra); padding: 56px 0; overflow: hidden; }
-    .logos-label {
-      text-align: center;
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.65); margin-bottom: 32px;
+    .gallery-cell::after {
+      content: '🔍'; position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; background: rgba(17,16,8,0.4);
+      opacity: 0; transition: opacity 0.3s;
     }
-    .logos-track-wrap { overflow: hidden; }
-    .logos-track {
-      display: flex; gap: 56px; align-items: center;
-      animation: scroll-logos 22s linear infinite;
-      width: max-content;
-    }
-    .logos-track:hover { animation-play-state: paused; }
-    @keyframes scroll-logos {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    .logo-item {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 12px; padding: 14px 28px;
-      color: var(--white); font-weight: 700;
-      font-size: 0.9rem; white-space: nowrap; letter-spacing: 0.04em;
+    .gallery-cell:hover::after { opacity: 1; }
+    @media(max-width:768px){
+      .gallery-grid{grid-template-columns:1fr 1fr;padding:0 20px}
+      .gallery-grid .gallery-cell:first-child{grid-column:span 2;grid-row:span 1}
+      .gallery-header{padding:0 20px}
     }
 
-    /* ─── CASE STUDY ──────────────────── */
+    /* ═══════════════════════════════════════
+       LIGHTBOX
+    ═══════════════════════════════════════ */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.95);
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img {
+      max-width: 90vw; max-height: 90vh;
+      border-radius: 16px; object-fit: contain;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 28px;
+      font-size: 2.5rem; background: none; border: none;
+      color: white; cursor: pointer; line-height: 1;
+    }
+    .lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 2rem; background: rgba(255,255,255,0.15);
+      border: none; color: white; cursor: pointer;
+      padding: 16px 14px; border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    /* ═══════════════════════════════════════
+       PRICING
+    ═══════════════════════════════════════ */
+    .pricing { background: var(--cream); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+    .price-card {
+      background: var(--white); border-radius: var(--r);
+      padding: 36px 28px; position: relative;
+      border: 2px solid transparent;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+    .price-card.featured {
+      border-color: var(--terra);
+      box-shadow: 0 16px 50px rgba(192,92,43,0.2);
+    }
+    .price-card.featured .price-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--terra); color: var(--white);
+      font-size: 0.72rem; font-weight: 700;
+      padding: 5px 18px; border-radius: 50px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .price-experience {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--terra); margin-bottom: 8px;
+    }
+    .price-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 900; margin-bottom: 4px;
+    }
+    .price-duration { font-size: 0.82rem; color: var(--olive); margin-bottom: 20px; }
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 900; color: var(--black);
+      line-height: 1; margin-bottom: 4px;
+    }
+    .price-amount small { font-size: 0.9rem; font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--olive); }
+    .price-unit { font-size: 0.78rem; color: var(--olive); margin-bottom: 24px; }
+    .price-features { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+    .price-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.875rem; color: var(--black-soft);
+    }
+    .price-features li::before { content: '✓'; color: var(--terra); font-weight: 700; }
+    .price-btn {
+      display: block; text-align: center;
+      background: var(--terra); color: var(--white);
+      padding: 14px; border-radius: 50px;
+      font-size: 0.9rem; font-weight: 700;
+      text-decoration: none; transition: background 0.2s;
+      border: none; cursor: pointer; width: 100%;
+    }
+    .price-btn:hover { background: var(--terra-light); }
+    .price-card.featured .price-btn { background: var(--terra); }
+    @media(max-width:768px){ .pricing-grid{grid-template-columns:1fr} }
+
+    /* ═══════════════════════════════════════
+       FAQ
+    ═══════════════════════════════════════ */
+    .faq { background: var(--white); }
+    .faq-list { max-width: 720px; margin-top: 48px; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      border: 1px solid rgba(192,92,43,0.15);
+      border-radius: var(--r-sm); overflow: hidden;
+      background: var(--cream);
+    }
+    .faq-q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; background: none; border: none;
+      cursor: pointer; text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 600; color: var(--black);
+      gap: 16px;
+    }
+    .faq-q:hover { color: var(--terra); }
+    .faq-icon { font-size: 1.2rem; flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 24px;
+      font-size: 0.875rem; color: var(--olive); line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding: 0 24px 20px; }
+
+    /* ═══════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════ */
+    .testimonials { background: var(--cream); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+    .testi-card {
+      background: var(--white); border-radius: var(--r);
+      padding: 28px; position: relative;
+    }
+    .testi-stars { color: #F5A623; font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .testi-quote {
+      font-size: 0.9rem; line-height: 1.7; color: var(--black-soft);
+      margin-bottom: 20px; font-style: italic;
+    }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--terra), var(--sand));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 700; font-size: 0.875rem; }
+    .testi-trip { font-size: 0.75rem; color: var(--olive); margin-top: 2px; }
+    .testi-flag { font-size: 1.1rem; }
+    @media(max-width:960px){ .testimonials-grid{grid-template-columns:1fr} }
+
+    /* ═══════════════════════════════════════
+       FIELD NOTES / BLOG
+    ═══════════════════════════════════════ */
+    .field-notes { background: var(--white); }
+    .notes-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+    .note-card {
+      border-radius: var(--r); overflow: hidden;
+      background: var(--cream); transition: transform 0.3s;
+    }
+    .note-card:hover { transform: translateY(-4px); }
+    .note-img { height: 200px; overflow: hidden; cursor: pointer; }
+    .note-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .note-card:hover .note-img img { transform: scale(1.06); }
+    .note-body { padding: 24px; }
+    .note-date { font-size: 0.72rem; color: var(--terra); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+    .note-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: var(--black); cursor: pointer; }
+    .note-excerpt { font-size: 0.82rem; color: var(--olive); line-height: 1.6; margin-bottom: 16px; }
+    .note-read {
+      font-size: 0.78rem; font-weight: 700; color: var(--terra);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .note-read:hover { color: var(--terra-light); }
+    @media(max-width:960px){ .notes-grid{grid-template-columns:1fr} }
+
+    /* ═══════════════════════════════════════
+       MAP SECTION
+    ═══════════════════════════════════════ */
+    .map-section { background: var(--cream-dark); }
+    .map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
+    .map-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 900; margin-bottom: 20px;
+    }
+    .map-item { display: flex; gap: 14px; margin-bottom: 20px; }
+    .map-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .map-text { font-size: 0.875rem; color: var(--black-soft); line-height: 1.6; }
+    .map-text strong { display: block; color: var(--black); font-size: 0.9rem; margin-bottom: 2px; }
+    .map-embed {
+      border-radius: 20px; overflow: hidden;
+      border: 3px solid rgba(192,92,43,0.2);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .map-embed iframe { width: 100%; height: 320px; border: none; display: block; }
+    @media(max-width:768px){ .map-grid{grid-template-columns:1fr} }
+
+    /* ═══════════════════════════════════════
+       CASE STUDY
+    ═══════════════════════════════════════ */
     .case-study { background: var(--cream); }
     .case-grid {
       display: grid; grid-template-columns: 1.2fr 1fr;
@@ -329,7 +740,7 @@
       display: flex; flex-direction: column; justify-content: flex-end;
     }
     .case-bg-img { position: absolute; inset: 0; }
-    .case-bg-img img { width: 100%; height: 100%; object-fit: cover; }
+    .case-bg-img img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
     .case-bg-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(17,16,8,0.92) 0%, rgba(17,16,8,0.3) 60%, transparent 100%);
@@ -352,47 +763,42 @@
       display: flex; gap: 28px; margin-top: 28px;
       padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15);
     }
-    .case-metric-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem; font-weight: 900; color: var(--terra-light);
-    }
+    .case-metric-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--terra-light); }
     .case-metric-label { font-size: 0.75rem; color: var(--sand); font-weight: 500; margin-top: 2px; }
     .case-side { display: flex; flex-direction: column; gap: 16px; }
-    .case-mini {
-      background: var(--white); border-radius: var(--r);
-      overflow: hidden; flex: 1; display: flex; flex-direction: column;
-    }
-    .case-mini-img { height: 160px; overflow: hidden; }
+    .case-mini { background: var(--white); border-radius: var(--r); overflow: hidden; flex: 1; display: flex; flex-direction: column; }
+    .case-mini-img { height: 160px; overflow: hidden; cursor: pointer; }
     .case-mini-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
     .case-mini:hover .case-mini-img img { transform: scale(1.06); }
     .case-mini-body { padding: 22px; }
     .case-mini-ico { font-size: 1.6rem; margin-bottom: 8px; }
-    .case-mini h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;
-    }
+    .case-mini h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
     .case-mini p { font-size: 0.82rem; color: var(--olive); line-height: 1.6; }
+    @media(max-width:960px){ .case-grid{grid-template-columns:1fr} }
 
-    /* ─── TESTIMONIAL ─────────────────── */
+    /* ═══════════════════════════════════════
+       LOGOS CAROUSEL
+    ═══════════════════════════════════════ */
+    .logos-section { background: var(--terra); padding: 56px 0; overflow: hidden; }
+    .logos-label { text-align: center; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 32px; }
+    .logos-track-wrap { overflow: hidden; }
+    .logos-track { display: flex; gap: 56px; align-items: center; animation: scroll-logos 22s linear infinite; width: max-content; }
+    .logos-track:hover { animation-play-state: paused; }
+    @keyframes scroll-logos { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .logo-item { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 14px 28px; color: var(--white); font-weight: 700; font-size: 0.9rem; white-space: nowrap; letter-spacing: 0.04em; }
+
+    /* ═══════════════════════════════════════
+       TESTIMONIAL (SINGLE)
+    ═══════════════════════════════════════ */
     .testimonial {
       position: relative; overflow: hidden;
-      padding: 120px 48px; text-align: center;
+      padding: 120px 0; text-align: center;
     }
-    .testimonial-bg {
-      position: absolute; inset: 0;
-    }
+    .testimonial-bg { position: absolute; inset: 0; }
     .testimonial-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-    .testimonial-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: rgba(17,16,8,0.72);
-    }
+    .testimonial-bg::after { content: ''; position: absolute; inset: 0; background: rgba(17,16,8,0.72); }
     .testimonial-content { position: relative; z-index: 2; }
-    .quote-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: 6rem; color: var(--terra-light); line-height: 0.5;
-      margin-bottom: 32px; display: block;
-    }
+    .quote-mark { font-family: 'Playfair Display', serif; font-size: 6rem; color: var(--terra-light); line-height: 0.5; margin-bottom: 32px; display: block; }
     .testimonial blockquote {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.4rem, 2.5vw, 2.1rem);
@@ -401,31 +807,46 @@
       margin: 0 auto 36px; color: var(--white);
     }
     .testimonial-author { display: flex; align-items: center; justify-content: center; gap: 12px; }
-    .author-avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--terra), var(--sand));
-      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-    }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--terra), var(--sand)); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
     .author-name { font-weight: 700; font-size: 0.9rem; color: var(--white); }
     .author-trip { font-size: 0.78rem; color: var(--sand); }
 
-    /* ─── FOOTER ──────────────────────── */
-    footer {
-      background: var(--black-soft);
-      color: var(--cream); padding: 80px 48px 40px;
+    /* ═══════════════════════════════════════
+       FLOATING WHATSAPP BUTTON
+    ═══════════════════════════════════════ */
+    .floating-wa {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
     }
-    .footer-grid {
-      display: grid; grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 60px; margin-bottom: 60px;
+    .wa-tooltip {
+      background: var(--black-soft); color: var(--cream);
+      padding: 8px 14px; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 500;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none; white-space: nowrap;
     }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; font-weight: 900;
-      color: var(--cream); margin-bottom: 14px;
+    .floating-wa:hover .wa-tooltip { opacity: 1; transform: translateY(0); }
+    .wa-btn {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
     }
+    .wa-btn:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.6); }
+    .wa-btn svg { width: 32px; height: 32px; fill: white; }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer { background: var(--black-soft); color: var(--cream); padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--cream); margin-bottom: 14px; }
     .footer-logo span { color: var(--terra-light); }
     .footer-tagline { font-size: 0.88rem; color: var(--sand); line-height: 1.6; margin-bottom: 28px; }
-    .socials { display: flex; gap: 12px; }
+    .socials { display: flex; gap: 12px; flex-wrap: wrap; }
     .social-btn {
       width: 40px; height: 40px; border-radius: 50%;
       background: rgba(255,255,255,0.08);
@@ -437,8 +858,7 @@
     .social-btn:hover { background: var(--terra); border-color: var(--terra); }
     .contact-form h3, .offices h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700;
-      color: var(--cream); margin-bottom: 20px;
+      font-size: 1.4rem; font-weight: 700; color: var(--cream); margin-bottom: 20px;
     }
     .form-group { margin-bottom: 12px; }
     .form-group input, .form-group textarea, .form-group select {
@@ -447,7 +867,7 @@
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: var(--r-sm); padding: 12px 16px;
       color: var(--cream); font-size: 0.875rem;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'DM Sans', var(--font-thai), sans-serif;
       transition: border-color 0.2s; outline: none;
     }
     .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(245,240,232,0.35); }
@@ -460,66 +880,66 @@
       color: var(--white); border: none; cursor: pointer;
       padding: 14px; border-radius: 50px;
       font-size: 0.9rem; font-weight: 700;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'DM Sans', var(--font-thai), sans-serif;
       transition: background 0.2s, transform 0.2s;
     }
     .btn-form:hover { background: var(--terra-light); transform: translateY(-1px); }
     .office-card { margin-bottom: 24px; }
-    .office-city {
-      font-weight: 700; font-size: 0.88rem;
-      color: var(--terra-light); letter-spacing: 0.04em;
-      text-transform: uppercase; margin-bottom: 5px;
-    }
+    .office-city { font-weight: 700; font-size: 0.88rem; color: var(--terra-light); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 5px; }
     .office-address { font-size: 0.83rem; color: var(--sand); line-height: 1.6; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 28px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
-    }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-copy { font-size: 0.8rem; color: rgba(245,240,232,0.4); }
     .footer-links { display: flex; gap: 24px; }
     .footer-links a { font-size: 0.8rem; color: rgba(245,240,232,0.4); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--terra-light); }
-
-    /* ─── RESPONSIVE ──────────────────── */
-    @media (max-width: 960px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      .hero, .chef-story { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 36px; }
-      .hero-right { order: -1; }
-      section { padding: 70px 24px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .case-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; padding: 0 24px; }
-      .gallery-grid .gallery-cell:first-child { grid-column: span 2; grid-row: span 1; }
-      .gallery-header { padding: 0 24px; }
-      .photo-strip { height: 140px; }
-      .services-header { flex-direction: column; align-items: flex-start; }
-    }
+    @media(max-width:960px){ .footer-grid{grid-template-columns:1fr;gap:40px} }
   </style>
 </head>
-<body>
+<body data-lang="en">
 
-  <!-- ─── NAV ─────────────────────────── -->
-  <nav>
-    <div class="nav-logo">AUM <span>HIPPIE</span> YOUNG</div>
+  <!-- ═══════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════ -->
+  <nav id="navbar">
+    <a href="#home" class="nav-logo">AUM <span>HIPPIE</span> YOUNG</a>
     <ul class="nav-links">
-      <li><a href="#services">Experiences</a></li>
-      <li><a href="#chef">The Guide</a></li>
-      <li><a href="#stories">Stories</a></li>
-      <li><a href="#contact" class="nav-cta">Book a Call</a></li>
+      <li><a href="#how-it-works"><span class="en">How It Works</span><span class="th">ขั้นตอน</span></a></li>
+      <li><a href="#services"><span class="en">Experiences</span><span class="th">ประสบการณ์</span></a></li>
+      <li><a href="#pricing"><span class="en">Pricing</span><span class="th">ราคา</span></a></li>
+      <li><a href="#gallery"><span class="en">Gallery</span><span class="th">แกลเลอรี</span></a></li>
+      <li><a href="#notes"><span class="en">Field Notes</span><span class="th">บันทึกภาคสนาม</span></a></li>
+      <li><a href="#chef"><span class="en">Guide</span><span class="th">ไกด์</span></a></li>
+      <li><a href="#contact" class="nav-cta"><span class="en">Book Now</span><span class="th">จองเลย</span></a></li>
     </ul>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('th')">TH</button>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMobile()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
-  <!-- ─── HERO ────────────────────────── -->
+  <!-- Mobile Nav -->
+  <div class="nav-mobile" id="mobileNav">
+    <button class="nav-mobile-close" onclick="toggleMobile()">✕</button>
+    <a href="#how-it-works" onclick="toggleMobile()"><span class="en">How It Works</span><span class="th">ขั้นตอน</span></a>
+    <a href="#services" onclick="toggleMobile()"><span class="en">Experiences</span><span class="th">ประสบการณ์</span></a>
+    <a href="#pricing" onclick="toggleMobile()"><span class="en">Pricing</span><span class="th">ราคา</span></a>
+    <a href="#gallery" onclick="toggleMobile()"><span class="en">Gallery</span><span class="th">แกลเลอรี</span></a>
+    <a href="#notes" onclick="toggleMobile()"><span class="en">Field Notes</span><span class="th">บันทึกภาคสนาม</span></a>
+    <a href="#chef" onclick="toggleMobile()"><span class="en">Guide</span><span class="th">ไกด์</span></a>
+    <a href="#contact" onclick="toggleMobile()"><span class="en">Book Now</span><span class="th">จองเลย</span></a>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
   <section class="hero" id="home">
     <div>
-      <div class="hero-badge">
-        <span></span>
-        4×4 · Trekking · Survival Cooking
-      </div>
+      <div class="hero-badge"><span></span> 4×4 · Trekking · Survival Cooking</div>
       <h1>Wild.<br/><em>Free.</em><br/>Barbarian.</h1>
       <p class="hero-sub">
         Break free from the ordinary. Journey deep into untamed terrain with
@@ -527,375 +947,911 @@
         and fire-cooked feasts under the open sky.
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary">📞 Book a Call</a>
-        <a href="#stories" class="btn-secondary">See Expeditions</a>
+        <a href="https://wa.me/66812345678?text=Hi%20Aum!%20I%27d%20like%20to%20book%20an%20adventure!" class="btn-whatsapp" target="_blank">
+          📞 <span class="en">WhatsApp Aum</span><span class="th">แชทวอตสแอป</span>
+        </a>
+        <a href="#services" class="btn-secondary">
+          <span class="en">Explore Experiences</span><span class="th">ดูประสบการณ์</span>
+        </a>
       </div>
     </div>
-
     <div class="hero-right">
-      <div class="hero-img-main">
-        <img loading="lazy" src="FB_IMG_1757957454305.jpg" alt="Summit trekking with Aum — mountain views over Northern Thailand" />
+      <div class="hero-img-main" onclick="openLightbox(0)">
+        <img src="FB_IMG_1757957454305.jpg" alt="Summit trekking with Aum — mountain views over Northern Thailand" />
         <div class="hero-img-overlay">
           <div class="hero-img-caption">Into the<br/>untamed wild.</div>
         </div>
       </div>
       <div class="hero-stats">
-        <div class="stat-card">
-          <div class="stat-num">120+</div>
-          <div class="stat-label">Expeditions Led</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">8+</div>
-          <div class="stat-label">Years Off-Road</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Wild-Cooked</div>
-        </div>
+        <div class="stat-card"><div class="stat-num">120+</div><div class="stat-label en">Expeditions Led</div><div class="stat-label th">ทัวร์นำ</div></div>
+        <div class="stat-card"><div class="stat-num">8+</div><div class="stat-label en">Years Off-Road</div><div class="stat-label th">ปีขับขี่ออฟรอด</div></div>
+        <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label en">Wild-Cooked</div><div class="stat-label th">ทำอาหารกลางแจ้ง</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ─── PHOTO STRIP ──────────────────── -->
+  <!-- Photo Strip -->
   <div class="photo-strip">
-    <div class="strip-img">
-      <img loading="lazy" src="FB_IMG_1757861350967.jpg" alt="Mountain sunset Northern Thailand" />
-      <div class="strip-label">Sunset Ridge</div>
-    </div>
-    <div class="strip-img">
-      <img loading="lazy" src="FB_IMG_1757957480622.jpg" alt="Rocky mountain cliffs" />
-      <div class="strip-label">Rocky Summit</div>
-    </div>
-    <div class="strip-img">
-      <img loading="lazy" src="FB_IMG_1757957541732.jpg" alt="Aerial jungle lake view" />
-      <div class="strip-label">Hidden Lake</div>
-    </div>
-    <div class="strip-img">
-      <img loading="lazy" src="FB_IMG_1761065629031.jpg" alt="Ancient temple Chiang Mai" />
-      <div class="strip-label">Sacred Sites</div>
-    </div>
-    <div class="strip-img">
-      <img loading="lazy" src="FB_IMG_1761373777332.jpg" alt="Summit views with travellers" />
-      <div class="strip-label">Summit Views</div>
-    </div>
+    <div class="strip-img" onclick="openLightbox(1)"><img src="FB_IMG_1757861350967.jpg" alt="Mountain sunset Northern Thailand" /><div class="strip-label">Sunset Ridge</div></div>
+    <div class="strip-img" onclick="openLightbox(2)"><img src="FB_IMG_1757957480622.jpg" alt="Rocky mountain cliffs" /><div class="strip-label">Rocky Summit</div></div>
+    <div class="strip-img" onclick="openLightbox(3)"><img src="FB_IMG_1757957541732.jpg" alt="Aerial jungle lake view" /><div class="strip-label">Hidden Lake</div></div>
+    <div class="strip-img" onclick="openLightbox(4)"><img src="FB_IMG_1761065629031.jpg" alt="Ancient temple Chiang Mai" /><div class="strip-label">Sacred Sites</div></div>
+    <div class="strip-img" onclick="openLightbox(5)"><img src="FB_IMG_1761373777332.jpg" alt="Summit views with travellers" /><div class="strip-label">Summit Views</div></div>
   </div>
 
-  <!-- ─── SERVICES ────────────────────── -->
-  <section class="services" id="services">
-    <div class="services-header">
-      <div>
-        <div class="section-label">What We Offer</div>
-        <h2 class="section-title">Three ways to<br/>lose yourself.</h2>
+  <!-- ═══════════════════════════════════════
+       HOW IT WORKS
+  ═══════════════════════════════════════ -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label en">Simple Process</div>
+        <div class="section-label th" style="display:none">ขั้นตอนง่ายๆ</div>
+        <h2 class="section-title en">Book in 4 steps</h2>
+        <h2 class="section-title th" style="display:none">จองง่ายๆ แค่ 4 ขั้นตอน</h2>
       </div>
-      <p class="section-desc">Every expedition is hand-crafted by Aum — no two trips are ever the same. Choose your adventure.</p>
-    </div>
-    <div class="services-grid">
-
-      <div class="service-card">
-        <div class="service-photo">
-          <img loading="lazy" src="IMG20260119084647.jpg" alt="Aum's Toyota Fortuner 4x4 — off-road adventure rig" />
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-icon">💬</div>
+          <div class="step-num en">Step 01</div><div class="step-num th" style="display:none">ขั้นตอนที่ 01</div>
+          <div class="step-title en">Send a Message</div><div class="step-title th" style="display:none">ส่งข้อความ</div>
+          <div class="step-desc en">WhatsApp Aum with your dream trip dates, group size, and experience type.</div>
+          <div class="step-desc th" style="display:none">ส่งข้อความหาอุ้มผ่านวอตสแอป บอกวันที่ จำนวนคน และประเภททัวร์ที่ต้องการ</div>
         </div>
-        <div class="service-body">
-          <div class="service-name">4×4 Off-Road Adventure</div>
-          <p class="service-desc">Blast through mountain passes, river crossings, and jungle trails in purpose-built 4×4 rigs. Aum handles the terrain — you handle the awe.</p>
-          <div class="service-tags">
-            <span class="service-tag">Full Day</span>
-            <span class="service-tag">Multi-Day</span>
-            <span class="service-tag">Private Group</span>
-          </div>
+        <div class="step-card reveal">
+          <div class="step-icon">🗺️</div>
+          <div class="step-num en">Step 02</div><div class="step-num th" style="display:none">ขั้นตอนที่ 02</div>
+          <div class="step-title en">Get Your Plan</div><div class="step-title th" style="display:none">รับแพลน</div>
+          <div class="step-desc en">Aum crafts a custom itinerary — route, meals, difficulty level — tailored to your group.</div>
+          <div class="step-desc th" style="display:none">อุ้มออกแบบรอบทัวร์พิเศษสำหรับคุณ — เส้นทาง อาหาร ระดับความยาก ตามกลุ่มของคุณ</div>
         </div>
-      </div>
-
-      <div class="service-card featured">
-        <div class="service-photo">
-          <img loading="lazy" src="FB_IMG_1757957456791.jpg" alt="Mountain trekking ridge viewpoint" />
+        <div class="step-card reveal">
+          <div class="step-icon">🔥</div>
+          <div class="step-num en">Step 03</div><div class="step-num th" style="display:none">ขั้นตอนที่ 03</div>
+          <div class="step-title en">Adventure Day</div><div class="step-title th" style="display:none">วันผจญภัย</div>
+          <div class="step-desc en">Pick-up in Chiang Mai. Aum handles everything — you just enjoy the ride.</div>
+          <div class="step-desc th" style="display:none">รับที่เชียงใหม่ อุ้มดูแลทุกอย่าง คุณเพียงเพลิดเพลิน</div>
         </div>
-        <div class="service-body">
-          <div class="service-name">Mountain Trekking</div>
-          <p class="service-desc">Lace up and push your limits. Guided treks through remote highland villages, cloud forests, and ridge-top viewpoints no tour bus will ever reach.</p>
-          <div class="service-tags">
-            <span class="service-tag">Dawn Hike</span>
-            <span class="service-tag">Overnight Camp</span>
-            <span class="service-tag">Custom Route</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-photo">
-          <img loading="lazy" src="FB_IMG_1757957661861.jpg" alt="Wild forest berries — foraging and survival cooking" />
-        </div>
-        <div class="service-body">
-          <div class="service-name">Survival Cooking</div>
-          <p class="service-desc">Forage, build fire, cook, feast. Aum the Barbarian Chef turns wild ingredients into unforgettable meals — a hands-on masterclass in living off the land.</p>
-          <div class="service-tags">
-            <span class="service-tag">Fire Cooking</span>
-            <span class="service-tag">Foraging</span>
-            <span class="service-tag">Camp Kitchen</span>
-          </div>
+        <div class="step-card reveal">
+          <div class="step-icon">🌟</div>
+          <div class="step-num en">Step 04</div><div class="step-num th" style="display:none">ขั้นตอนที่ 04</div>
+          <div class="step-title en">Remember Forever</div><div class="step-title th" style="display:none">จดจำตลอดไป</div>
+          <div class="step-desc en">Home-cooked memories, new friends, and stories you'll tell for the rest of your life.</div>
+          <div class="step-desc th" style="display:none">ความทรงจำอันน่าจดจำ เพื่อนใหม่ และเรื่องเล่าที่คุณจะเล่าตลอดไป</div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ─── CHEF STORY ──────────────────── -->
-  <section class="chef-story" id="chef">
-    <div class="chef-img-wrap">
-      <div class="chef-img">
-        <img loading="lazy" src="FB_IMG_1759252997546.jpg" alt="Aum the Barbarian Chef — Aumhippie Young" />
-        <div class="chef-name-badge">
-          <div class="name">Aum the Barbarian Chef</div>
-          <div class="role">Guide · Chef · Off-Road Specialist</div>
+  <!-- ═══════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header">
+        <div>
+          <div class="section-label en">What We Offer</div>
+          <div class="section-label th" style="display:none">สิ่งที่เราเสนอ</div>
+          <h2 class="section-title en">Three ways to<br/>lose yourself.</h2>
+          <h2 class="section-title th" style="display:none">สามวิธีที่จะทำให้คุณ<br/>ลืมทุกสิ่ง</h2>
+        </div>
+        <p class="section-desc en">Every expedition is hand-crafted by Aum — no two trips are ever the same.</p>
+        <p class="section-desc th" style="display:none">ทุกทริปออกแบบโดยอุ้ม — ไม่มีสองทริปที่เหมือนกัน</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-photo" onclick="openLightbox(6)"><img src="IMG20260119084647.jpg" alt="Aum's Toyota Fortuner 4x4" /></div>
+          <div class="service-body">
+            <div class="service-name en">4×4 Off-Road Adventure</div><div class="service-name th" style="display:none">ผจญภัย 4×4 ออฟรอด</div>
+            <div class="service-desc en">Mountain passes, river crossings, jungle trails — Aum handles the terrain, you handle the awe.</div>
+            <div class="service-desc th" style="display:none">ผ่านภูเขา ข้ามแม่น้ำ ลุยป่า — อุ้มดูแลเส้นทาง คุณเพียงเพลิดเพลิน</div>
+            <div class="service-tags">
+              <span class="service-tag en">Full Day</span><span class="service-tag th">เต็มวัน</span>
+              <span class="service-tag en">Multi-Day</span><span class="service-tag th">หลายวัน</span>
+              <span class="service-tag en">Private Group</span><span class="service-tag th">กลุ่มส่วนตัว</span>
+            </div>
+            <div class="service-price">4,500 <small>THB</small> <small class="en">/ person</small><small class="th">/ คน</small></div>
+            <a href="https://wa.me/66812345678?text=Hi%20Aum!%20I%27m%20interested%20in%20a%204x4%20Off-Road%20Adventure" class="service-book en" target="_blank">🔥 Book This</a>
+            <a href="https://wa.me/66812345678?text=สวัสดีอุ้ม!%20สนใจ%20ผจญภัย%204x4%20ออฟรอด" class="service-book th" style="display:none" target="_blank">🔥 จองเลย</a>
+          </div>
+        </div>
+        <div class="service-card featured reveal">
+          <div class="service-photo" onclick="openLightbox(7)"><img src="FB_IMG_1757957456791.jpg" alt="Mountain trekking" /></div>
+          <div class="service-body">
+            <div class="service-name en">Mountain Trekking</div><div class="service-name th" style="display:none">ปีนเขา/เดินป่า</div>
+            <div class="service-desc en">Remote highland villages, cloud forests, ridge-top viewpoints no tour bus will ever reach.</div>
+            <div class="service-desc th" style="display:none">หมู่บ้านบนสูง ป่าดิบ จุดชมวิวบนสันเขา ที่รถทัวร์ไม่เคยไปถึง</div>
+            <div class="service-tags">
+              <span class="service-tag en">Dawn Hike</span><span class="service-tag th">เดินย่านรุ่งเช้า</span>
+              <span class="service-tag en">Overnight Camp</span><span class="service-tag th">ค้างคืน</span>
+              <span class="service-tag en">Custom Route</span><span class="service-tag th">เส้นทางตามใจ</span>
+            </div>
+            <div class="service-price">3,200 <small>THB</small> <small class="en">/ person</small><small class="th">/ คน</small></div>
+            <a href="https://wa.me/66812345678?text=Hi%20Aum!%20I%27m%20interested%20in%20Mountain%20Trekking" class="service-book en" target="_blank">🔥 Book This</a>
+            <a href="https://wa.me/66812345678?text=สวัสดีอุ้ม!%20สนใจ%20ปีนเขา/เดินป่า" class="service-book th" style="display:none" target="_blank">🔥 จองเลย</a>
+          </div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-photo" onclick="openLightbox(8)"><img src="FB_IMG_1757957661861.jpg" alt="Wild forest berries foraging" /></div>
+          <div class="service-body">
+            <div class="service-name en">Survival Cooking</div><div class="service-name th" style="display:none">ทำอาหารกลางแจ้ง</div>
+            <div class="service-desc en">Forage, build fire, cook, feast. Aum turns wild ingredients into unforgettable meals.</div>
+            <div class="service-desc th" style="display:none">หาของป่า จุดไฟ ทำอาหาร ฟาสต์ อุ้มเปลี่ยนวัตถุดิบป่าเป็นมื้ออาหารที่น่าจดจำ</div>
+            <div class="service-tags">
+              <span class="service-tag en">Fire Cooking</span><span class="service-tag th">ทำอาหารที่กองไฟ</span>
+              <span class="service-tag en">Foraging</span><span class="service-tag th">เก็บของป่า</span>
+              <span class="service-tag en">Camp Kitchen</span><span class="service-tag th">ครัวกลางแจ้ง</span>
+            </div>
+            <div class="service-price">2,800 <small>THB</small> <small class="en">/ person</small><small class="th">/ คน</small></div>
+            <a href="https://wa.me/66812345678?text=Hi%20Aum!%20I%27m%20interested%20in%20Survival%20Cooking" class="service-book en" target="_blank">🔥 Book This</a>
+            <a href="https://wa.me/66812345678?text=สวัสดีอุ้ม!%20สนใจ%20ทำอาหารกลางแจ้ง" class="service-book th" style="display:none" target="_blank">🔥 จองเลย</a>
+          </div>
         </div>
       </div>
-      <div class="float-tag">⭐ 4.9 / 5 from 340+ travellers</div>
     </div>
+  </section>
 
+  <!-- ═══════════════════════════════════════
+       WHAT TO BRING
+  ═══════════════════════════════════════ -->
+  <section class="what-to-bring" id="bring">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label en">Be Prepared</div>
+        <div class="section-label th" style="display:none">เตรียมตัวให้พร้อม</div>
+        <h2 class="section-title en">What to bring</h2>
+        <h2 class="section-title th" style="display:none">ควรเตรียมอะไรมา</h2>
+        <p class="section-desc en">Travel light, but bring the right gear. Aum provides all camping and cooking equipment.</p>
+        <p class="section-desc th" style="display:none">เดินทางเบาๆ แต่เตรียมของจำเป็นให้ครบ อุ้มเตรียมอุปกรณ์แคมป์และครัวให้หมด</p>
+      </div>
+      <div class="bring-grid">
+        <div class="bring-card reveal">
+          <div class="bring-icon">🥾</div>
+          <div class="bring-title en">For All Adventures</div><div class="bring-title th" style="display:none">สำหรับทุกทริป</div>
+          <ul class="bring-list">
+            <li class="en">Comfortable hiking shoes or boots</li>
+            <li class="th" style="display:none">รองเท้าลุยเขาหรือบูตที่สบาย</li>
+            <li class="en">Light breathable clothing (long sleeves recommended)</li>
+            <li class="th" style="display:none">เสื้อผ้าสบายๆ ระบายอากาศได้ดี (แนะนำแขนยาว)</li>
+            <li class="en">Sunscreen & insect repellent</li>
+            <li class="th" style="display:none">ครีมกันแดดและยากันยุง</li>
+            <li class="en">Water bottle (min. 1.5L)</li>
+            <li class="th" style="display:none">ขวดน้ำ (อย่างน้อย 1.5 ลิตร)</li>
+            <li class="en">Camera — you'll want photos</li>
+            <li class="th" style="display:none">กล้อง — คุณจะอยากเก็บภาพแน่</li>
+          </ul>
+        </div>
+        <div class="bring-card reveal">
+          <div class="bring-icon">🏕️</div>
+          <div class="bring-title en">For Overnight Trips</div><div class="bring-title th" style="display:none">สำหรับทริปค้าคืน</div>
+          <ul class="bring-list">
+            <li class="en">Sleeping bag or light blanket</li>
+            <li class="th" style="display:none">ถุงนอนหรือผ้าห่มเบาๆ</li>
+            <li class="en">Personal toiletries & medications</li>
+            <li class="th" style="display:none">เครื่องสำอางและยาส่วนตัว</li>
+            <li class="en">Small backpack for day hikes</li>
+            <li class="th" style="display:none">เป้เดินป่าระดับเบา้องึก</li>
+            <li class="en">Headlamp or torch</li>
+            <li class="th" style="display:none">ไฟฉายหัวหรือโคมไฟ</li>
+            <li class="en">Flip flops for camp</li>
+            <li class="th" style="display:none">รองเท้าแตะสำหรับแคมป์</li>
+          </ul>
+        </div>
+        <div class="bring-card reveal">
+          <div class="bring-icon">🌧️</div>
+          <div class="bring-title en">Seasonal Tips</div><div class="bring-title th" style="display:none">เคล็ดลับตามฤดูกาล</div>
+          <ul class="bring-list">
+            <li class="en"><strong>Nov–Feb (Cool):</strong> Light jacket for early morning</li>
+            <li class="th" style="display:none"><strong>พ.ย.-ก.พ. (หนาว):</strong> เสื้อแจ็คเก็ตเบาๆ สำหรับเช้าหนาว</li>
+            <li class="en"><strong>Mar–May (Hot):</strong> Extra water, hat, cooling towel</li>
+            <li class="th" style="display:none"><strong>มี.ค.-พ.ค. (ร้อน):</strong> น้ำเพิ่ม หมวก ผ้าเย็น</li>
+            <li class="en"><strong>Jun–Oct (Rain):</strong> Rain jacket, dry bags</li>
+            <li class="th" style="display:none"><strong>มิ.ย.-ต.ค. (ฝน):</strong> เสื้อฝน ถุงกันซึม</li>
+            <li class="en">Aum provides all cooking gear, tents & safety equipment</li>
+            <li class="th" style="display:none">อุ้มเตรียมอุปกรณ์ทำอาหาร เต็นท์ และอุปกรณ์ความปลอดภัยให้</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       VIDEO
+  ═══════════════════════════════════════ -->
+  <section class="video-section" id="video">
+    <div class="container">
+      <div class="video-inner reveal">
+        <div class="section-label en">See It In Action</div>
+        <div class="section-label th" style="display:none">ดูการผจญภัยจริงๆ</div>
+        <h2 class="section-title en">This is what<br/>freedom feels like.</h2>
+        <h2 class="section-title th" style="display:none">นี่คือความรู้สึก<br/>ของอิสระ</h2>
+        <p class="section-desc en">Real trips. Real people. Real wild.</p>
+        <p class="section-desc th" style="display:none">ทริปจริงๆ คนจริงๆ ผจญภัยจริงๆ</p>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" title="Aum Hippie Young — Wild Adventures" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PRICING
+  ═══════════════════════════════════════ -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label en">Transparent Pricing</div>
+        <div class="section-label th" style="display:none">ราคาชัดเจน</div>
+        <h2 class="section-title en">Honest prices.<br/>No surprises.</h2>
+        <h2 class="section-title th" style="display:none">ราคาตรงไปตรงมา<br/>ไม่มีค่าใช้จ่ายซ่อนเร้น</h2>
+        <p class="section-desc en">All prices include guide, equipment, meals, and transport from Chiang Mai. Custom expeditions priced individually.</p>
+        <p class="section-desc th" style="display:none">ราคาทุกอย่างรวมไกด์ อุปกรณ์ อาหาร และรถรับส่งจากเชียงใหม่ ทัวร์พิเศษราคาตามความเหมาะสม</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <div class="price-experience en">Half Day</div><div class="price-experience th" style="display:none">ครึ่งวัน</div>
+          <div class="price-name en">Explorer Run</div><div class="price-name th" style="display:none">เอ็กซ์พลอเรอร์รัน</div>
+          <div class="price-duration en">4–5 hours · Chiang Mai area</div><div class="price-duration th" style="display:none">4-5 ชั่วโมง · บริเวณเชียงใหม่</div>
+          <div class="price-amount">2,800 <small>THB</small></div>
+          <div class="price-unit en">per person · min 2 people</div><div class="price-unit th" style="display:none">ต่อคน · ขั้นต่ำ 2 คน</div>
+          <ul class="price-features">
+            <li class="en">Private 4×4 vehicle</li><li class="th" style="display:none">รถ 4×4 ส่วนตัว</li>
+            <li class="en">Expert driver/guide</li><li class="th" style="display:none">คนขับ/ไกด์ผู้เชี่ยวชาญ</li>
+            <li class="en">Refreshments & snacks</li><li class="th" style="display:none">เครื่องดื่มและขนม</li>
+            <li class="en">Hotel pick-up & drop-off</li><li class="th" style="display:none">รับ-ส่งโรงแรม</li>
+          </ul>
+          <a href="https://wa.me/66812345678?text=Hi%20Aum!%20I%27d%20like%20to%20book%20the%20Explorer%20Run%20(half%20day)" class="price-btn en" target="_blank">Book Now</a>
+          <a href="https://wa.me/66812345678?text=สวัสดีอุ้ม!%20อยากจอง%20Explorer%20Run%20(ครึ่งวัน)" class="price-btn th" style="display:none" target="_blank">จองเลย</a>
+        </div>
+        <div class="price-card featured reveal">
+          <div class="price-badge en">Most Popular</div><div class="price-badge th" style="display:none">ยอดนิยม</div>
+          <div class="price-experience en">Full Day</div><div class="price-experience th" style="display:none">เต็มวัน</div>
+          <div class="price-name en">Barbarian Run</div><div class="price-name th" style="display:none">บาร์บาเรียนรัน</div>
+          <div class="price-duration en">8–10 hours · Extended routes</div><div class="price-duration th" style="display:none">8-10 ชั่วโมง · เส้นทางขยาย</div>
+          <div class="price-amount">4,500 <small>THB</small></div>
+          <div class="price-unit en">per person · min 2 people</div><div class="price-unit th" style="display:none">ต่อคน · ขั้นต่ำ 2 คน</div>
+          <ul class="price-features">
+            <li class="en">Everything in Explorer Run</li><li class="th" style="display:none">ทุกอย่างใน Explorer Run</li>
+            <li class="en">Lunch by the river</li><li class="th" style="display:none">อาหารกลางวันริมแม่น้ำ</li>
+            <li class="en">Swimming & jungle stops</li><li class="th" style="display:none">ว่ายน้ำและพักป่า</li>
+            <li class="en">Photo documentation</li><li class="th" style="display:none">ถ่ายภาพให้</li>
+          </ul>
+          <a href="https://wa.me/66812345678?text=Hi%20Aum!%20I%27d%20like%20to%20book%20the%20Barbarian%20Run%20(full%20day)" class="price-btn en" target="_blank">Book Now</a>
+          <a href="https://wa.me/66812345678?text=สวัสดีอุ้ม!%20อยากจอง%20Barbarian%20Run%20(เต็มวัน)" class="price-btn th" style="display:none" target="_blank">จองเลย</a>
+        </div>
+        <div class="price-card reveal">
+          <div class="price-experience en">Multi-Day</div><div class="price-experience th" style="display:none">หลายวัน</div>
+          <div class="price-name en">Summit Expedition</div><div class="price-name th" style="display:none">เอ็กซ์พดิชันสุดยอด</div>
+          <div class="price-duration en">2–3 days · Remote terrain</div><div class="price-duration th" style="display:none">2-3 วัน · เส้นทางห่างไกล</div>
+          <div class="price-amount">8,500 <small>THB</small></div>
+          <div class="price-unit en">per person · min 2 people</div><div class="price-unit th" style="display:none">ต่อคน · ขั้นต่ำ 2 คน</div>
+          <ul class="price-features">
+            <li class="en">Full camping equipment</li><li class="th" style="display:none">อุปกรณ์แคมป์ครบชุด</li>
+            <li class="en">All meals included</li><li class="th" style="display:none">อาหารทุกมื้อรวม</li>
+            <li class="en">Wild cooking masterclass</li><li class="th" style="display:none"> workshop ทำอาหารกลางแจ้ง</li>
+            <li class="en">Private 4×4 support vehicle</li><li class="th" style="display:none">รถ 4×4 ส่วนตัวตามรถ</li>
+          </ul>
+          <a href="https://wa.me/66812345678?text=Hi%20Aum!%20I%27d%20like%20to%20book%20the%20Summit%20Expedition%20(multi-day)" class="price-btn en" target="_blank">Book Now</a>
+          <a href="https://wa.me/66812345678?text=สวัสดีอุ้ม!%20อยากจอง%20Summit%20Expedition%20(หลายวัน)" class="price-btn th" style="display:none" target="_blank">จองเลย</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CHEF STORY
+  ═══════════════════════════════════════ -->
+  <section class="chef-story" id="chef">
+    <div class="chef-img-wrap">
+      <div class="chef-img" onclick="openLightbox(9)">
+        <img src="FB_IMG_1759252997546.jpg" alt="Aum the Barbarian Chef" />
+        <div class="chef-name-badge">
+          <div class="name en">Aum the Barbarian Chef</div>
+          <div class="name th" style="display:none">อุ้ม เชฟผู้พิชิตผืนป่า</div>
+          <div class="role en">Guide · Chef · Off-Road Specialist</div>
+          <div class="role th" style="display:none">ไกด์ · เชฟ · ผู้เชี่ยวชาญออฟรอด</div>
+        </div>
+      </div>
+      <div class="float-tag en">⭐ 4.9 / 5 from 340+ travellers</div>
+      <div class="float-tag th" style="display:none">⭐ 4.9 / 5 จากนักเดินทาง 340+ คน</div>
+    </div>
     <div>
-      <div class="section-label">Meet Your Guide</div>
-      <h2 class="section-title">Not your average tour guide.</h2>
-      <p class="section-desc">Aum has spent over a decade mastering mountain trails, reading rivers, and cooking extraordinary meals over open fires in the most remote corners of Thailand. Part ranger, part chef, all barbarian.</p>
+      <div class="section-label en">Meet Your Guide</div>
+      <div class="section-label th" style="display:none">พบกับไกด์ของคุณ</div>
+      <h2 class="section-title en">Not your average<br/>tour guide.</h2>
+      <h2 class="section-title th" style="display:none">ไม่ใช่ไกด์ทั่วไป<br/>ของคุณ</h2>
+      <p class="section-desc en">Aum has spent over a decade mastering mountain trails, reading rivers, and cooking extraordinary meals over open fires in the most remote corners of Thailand.</p>
+      <p class="section-desc th" style="display:none">อุ้มใช้เวลากว่าทศวรรษในการเชี่ยวชาญเส้นทางภูเขา อ่านแม่น้ำ และทำอาหารพิเศษกลางแจ้งในที่ห่างไกลที่สุดของประเทศไทย</p>
       <ul class="skill-list">
         <li class="skill-item">
           <span class="skill-ico">🚗</span>
-          <div class="skill-text">
-            4×4 Off-Road Expert
-            <span>Certified trail guide — jungle, mountain &amp; river terrain</span>
-          </div>
+          <div class="skill-text en"><strong>4×4 Off-Road Expert</strong><span>Certified trail guide — jungle, mountain & river terrain</span></div>
+          <div class="skill-text th" style="display:none"><strong>ผู้เชี่ยวชาญ 4×4 ออฟรอด</strong><span>ไกด์เส้นทางที่ได้รับการรับรอง — ป่า ภูเขา แม่น้ำ</span></div>
         </li>
         <li class="skill-item">
-          <span class="skill-ico">🔪</span>
-          <div class="skill-text">
-            Wild Fire Cuisine
-            <span>Northern Thai &amp; forest-foraged menus, cooked from scratch</span>
-          </div>
+          <span class="skill-ico">🔥</span>
+          <div class="skill-text en"><strong>Wild Fire Cuisine</strong><span>Northern Thai & forest-foraged menus, cooked from scratch</span></div>
+          <div class="skill-text th" style="display:none"><strong>อาหารกลางแจ้ง</strong><span>เมนูอาหารเหนือและของป่า ทำจากศูนย์</span></div>
         </li>
         <li class="skill-item">
           <span class="skill-ico">🏕️</span>
-          <div class="skill-text">
-            Survival &amp; Bushcraft
-            <span>Shelter-building, foraging, navigation — real wilderness skills</span>
-          </div>
+          <div class="skill-text en"><strong>Survival & Bushcraft</strong><span>Shelter-building, foraging, navigation — real wilderness skills</span></div>
+          <div class="skill-text th" style="display:none"><strong>เอาตัวรอดและดึงของป่า</strong><span>สร้างที่พัก หาของป่า นำทาง — ทักษะผจญภัยจริง</span></div>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- ─── GALLERY GRID ────────────────── -->
+  <!-- ═══════════════════════════════════════
+       GALLERY
+  ═══════════════════════════════════════ -->
   <section class="gallery" id="gallery">
     <div class="gallery-header">
-      <div class="section-label">From the Field</div>
-      <h2 class="section-title" style="margin-bottom:0">Real trips.<br/>Real wild.</h2>
+      <div class="section-label en">From the Field</div>
+      <div class="section-label th" style="display:none">จากภาคสนาม</div>
+      <h2 class="section-title en" style="margin-bottom:0">Real trips.<br/>Real wild.</h2>
+      <h2 class="section-title th" style="display:none;margin-bottom:0">ทริปจริงๆ<br/>ผจญภัยจริงๆ</h2>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-cell">
-        <img loading="lazy" src="FB_IMG_1757957470679.jpg" alt="Aum praying at mountain summit shrine" />
-      </div>
-      <div class="gallery-cell">
-        <img loading="lazy" src="FB_IMG_1757861355258.jpg" alt="Northern Thailand mountain panorama" />
-      </div>
-      <div class="gallery-cell">
-        <img loading="lazy" src="FB_IMG_1754872694887.jpg" alt="Ancient wooden temple Chiang Mai" />
-      </div>
-      <div class="gallery-cell">
-        <img loading="lazy" src="FB_IMG_1757957522999.jpg" alt="Aerial valley view storm clouds" />
-      </div>
-      <div class="gallery-cell">
-        <img loading="lazy" src="FB_IMG_1761065633775.jpg" alt="Temple stone steps jungle" />
-      </div>
+      <div class="gallery-cell" onclick="openLightbox(10)"><img src="FB_IMG_1757957470679.jpg" alt="Aum praying at mountain summit shrine" /></div>
+      <div class="gallery-cell" onclick="openLightbox(11)"><img src="FB_IMG_1757861355258.jpg" alt="Northern Thailand mountain panorama" /></div>
+      <div class="gallery-cell" onclick="openLightbox(12)"><img src="FB_IMG_1754872694887.jpg" alt="Ancient wooden temple Chiang Mai" /></div>
+      <div class="gallery-cell" onclick="openLightbox(13)"><img src="FB_IMG_1757957522999.jpg" alt="Aerial valley view storm clouds" /></div>
+      <div class="gallery-cell" onclick="openLightbox(14)"><img src="FB_IMG_1761065633775.jpg" alt="Temple stone steps jungle" /></div>
     </div>
   </section>
 
-  <!-- ─── LOGOS CAROUSEL ──────────────── -->
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery image" />
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</button>
+  </div>
+
+  <!-- Logos Carousel -->
   <div class="logos-section">
-    <p class="logos-label">As featured in &amp; trusted by</p>
+    <p class="logos-label en">As featured in & trusted by</p>
+    <p class="logos-label th" style="display:none">รีวิวและไว้วางใจจาก</p>
     <div class="logos-track-wrap">
       <div class="logos-track">
-        <div class="logo-item">LONELY PLANET</div>
-        <div class="logo-item">CHIANG MAI TIMES</div>
-        <div class="logo-item">ADVENTURE ASIA</div>
-        <div class="logo-item">THAILAND INSIDER</div>
-        <div class="logo-item">WILD COMPASS</div>
-        <div class="logo-item">NOMAD STORIES</div>
-        <div class="logo-item">TREK THAILAND</div>
-        <div class="logo-item">OFFROAD WEEKLY</div>
-        <div class="logo-item">LONELY PLANET</div>
-        <div class="logo-item">CHIANG MAI TIMES</div>
-        <div class="logo-item">ADVENTURE ASIA</div>
-        <div class="logo-item">THAILAND INSIDER</div>
-        <div class="logo-item">WILD COMPASS</div>
-        <div class="logo-item">NOMAD STORIES</div>
-        <div class="logo-item">TREK THAILAND</div>
-        <div class="logo-item">OFFROAD WEEKLY</div>
+        <div class="logo-item en">LONELY PLANET</div><div class="logo-item th" style="display:none">ลอนลี่แพลเน็ต</div>
+        <div class="logo-item en">CHIANG MAI TIMES</div><div class="logo-item th" style="display:none">ไทม์ส์เชียงใหม่</div>
+        <div class="logo-item en">ADVENTURE ASIA</div><div class="logo-item th" style="display:none">แอดเวนเจอร์เอเชีย</div>
+        <div class="logo-item en">THAILAND INSIDER</div><div class="logo-item th" style="display:none">ไทยแลนด์อินไซด์เดอร์</div>
+        <div class="logo-item en">WILD COMPASS</div><div class="logo-item th" style="display:none">ไวลด์คอมแพส</div>
+        <div class="logo-item en">NOMAD STORIES</div><div class="logo-item th" style="display:none">โนมแมดสตอรีส์</div>
+        <div class="logo-item en">TREK THAILAND</div><div class="logo-item th" style="display:none">เทรคไทยแลนด์</div>
+        <div class="logo-item en">OFFROAD WEEKLY</div><div class="logo-item th" style="display:none">ออฟรอดวีกลี่</div>
+        <div class="logo-item en">LONELY PLANET</div><div class="logo-item th" style="display:none">ลอนลี่แพลเน็ต</div>
+        <div class="logo-item en">CHIANG MAI TIMES</div><div class="logo-item th" style="display:none">ไทม์ส์เชียงใหม่</div>
+        <div class="logo-item en">ADVENTURE ASIA</div><div class="logo-item th" style="display:none">แอดเวนเจอร์เอเชีย</div>
+        <div class="logo-item en">THAILAND INSIDER</div><div class="logo-item th" style="display:none">ไทยแลนด์อินไซด์เดอร์</div>
+        <div class="logo-item en">WILD COMPASS</div><div class="logo-item th" style="display:none">ไวลด์คอมแพส</div>
+        <div class="logo-item en">NOMAD STORIES</div><div class="logo-item th" style="display:none">โนมแมดสตอรีส์</div>
+        <div class="logo-item en">TREK THAILAND</div><div class="logo-item th" style="display:none">เทรคไทยแลนด์</div>
+        <div class="logo-item en">OFFROAD WEEKLY</div><div class="logo-item th" style="display:none">ออฟรอดวีกลี่</div>
       </div>
     </div>
   </div>
 
-  <!-- ─── CASE STUDY ──────────────────── -->
+  <!-- ═══════════════════════════════════════
+       CASE STUDY
+  ═══════════════════════════════════════ -->
   <section class="case-study" id="stories">
-    <div class="section-label">Featured Expedition</div>
-    <h2 class="section-title">The Summit Shrine<br/>Barbarian Run.</h2>
-
-    <div class="case-grid">
-      <div class="case-card-main">
-        <div class="case-bg-img">
-          <img loading="lazy" src="FB_IMG_1757957470679.jpg" alt="Aum at mountain summit shrine" />
-        </div>
-        <div class="case-bg-overlay"></div>
-        <div class="case-content">
-          <span class="case-tag">3-Day Expedition</span>
-          <h3>From city lights to summit shrine, 2,565 metres above the ordinary.</h3>
-          <p>A private group tackled Thailand's sacred highland peaks in a custom 3-day journey — off-road approach through Karen hill-tribe villages, overnight jungle camp, and a summit-morning fire feast cooked by Aum himself. Zero complaints. Zero comfort zones.</p>
-          <div class="case-metrics">
-            <div><div class="case-metric-num">3</div><div class="case-metric-label">Days Off-Grid</div></div>
-            <div><div class="case-metric-num">2,565m</div><div class="case-metric-label">Peak Altitude</div></div>
-            <div><div class="case-metric-num">8</div><div class="case-metric-label">Legends Made</div></div>
+    <div class="container">
+      <div class="section-label en">Featured Expedition</div>
+      <div class="section-label th" style="display:none">ทริปเด่น</div>
+      <h2 class="section-title en">The Summit Shrine<br/>Barbarian Run.</h2>
+      <h2 class="section-title th" style="display:none">บาร์บาเรียนรัน<br/>ยอดเขาศักดิ์สิทธิ์</h2>
+      <div class="case-grid">
+        <div class="case-card-main reveal">
+          <div class="case-bg-img" onclick="openLightbox(10)"><img src="FB_IMG_1757957470679.jpg" alt="Aum at mountain summit shrine" /></div>
+          <div class="case-bg-overlay"></div>
+          <div class="case-content">
+            <span class="case-tag en">3-Day Expedition</span><span class="case-tag th" style="display:none">ทริป 3 วัน</span>
+            <h3 class="en">From city lights to summit shrine, 2,565 metres above the ordinary.</h3>
+            <h3 class="th" style="display:none">จากแสงเมืองสู่ศาลเจ้ายอดเขา สูง 2,565 เมตร เหนือความธรรมดา</h3>
+            <p class="en">A private group tackled Thailand's sacred highland peaks in a custom 3-day journey — off-road approach through Karen hill-tribe villages, overnight jungle camp, and a summit-morning fire feast cooked by Aum himself.</p>
+            <p class="th" style="display:none">กลุ่มส่วนตัวตะลุยยอดเขาศักดิ์สิทธิ์ของไทยในทริป 3 วัน — ขับรถออฟรอดผ่านหมู่บ้านกะเหรี่ยง ค้างคืนกลางป่า และมื้อเช้าบนยอดเขาที่อุ้มทำเอง</p>
+            <div class="case-metrics">
+              <div><div class="case-metric-num en">3</div><div class="case-metric-num th" style="display:none">3</div><div class="case-metric-label en">Days Off-Grid</div><div class="case-metric-label th" style="display:none">วันออฟไลน์</div></div>
+              <div><div class="case-metric-num">2,565m</div><div class="case-metric-label en">Peak Altitude</div><div class="case-metric-label th" style="display:none">ยอดเขาสูง</div></div>
+              <div><div class="case-metric-num en">8</div><div class="case-metric-num th" style="display:none">8</div><div class="case-metric-label en">Legends Made</div><div class="case-metric-label th" style="display:none">ตำนานที่สร้าง</div></div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="case-side">
-        <div class="case-mini">
-          <div class="case-mini-img">
-            <img loading="lazy" src="FB_IMG_1757957541732.jpg" alt="Aerial jungle lake view from summit" />
+        <div class="case-side">
+          <div class="case-mini reveal">
+            <div class="case-mini-img" onclick="openLightbox(3)"><img src="FB_IMG_1757957541732.jpg" alt="Aerial jungle lake" /></div>
+            <div class="case-mini-body">
+              <div class="case-mini-ico">🌊</div>
+              <h4 class="en">Mae Wang River Loop</h4><h4 class="th" style="display:none">ลูปแม่วัง</h4>
+              <p class="en">Full-day 4×4 through elephant corridors, bamboo groves, and river fords — ending with open-fire BBQ on the riverbank.</p>
+              <p class="th" style="display:none">ขับรถ 4×4 เต็มวันผ่านทางช้าง ไผ่ และข้ามแม่น้ำ — จบด้วยบาร์บีคิวกลางแจ้งริมแม่น้ำ</p>
+            </div>
           </div>
-          <div class="case-mini-body">
-            <div class="case-mini-ico">🌊</div>
-            <h4>Mae Wang River Loop</h4>
-            <p>Full-day 4×4 through elephant corridors, bamboo groves, and river fords — ending with open-fire BBQ on the riverbank.</p>
-          </div>
-        </div>
-        <div class="case-mini">
-          <div class="case-mini-img">
-            <img loading="lazy" src="FB_IMG_1761373777332.jpg" alt="Two trekkers resting on mountain ridge" />
-          </div>
-          <div class="case-mini-body">
-            <div class="case-mini-ico">🏔️</div>
-            <h4>Doi Suthep Night Trek</h4>
-            <p>Headlamp hike to a forest ridge shrine at 3 AM. Aum cooks breakfast at sunrise. You'll never view a city the same way again.</p>
+          <div class="case-mini reveal">
+            <div class="case-mini-img" onclick="openLightbox(5)"><img src="FB_IMG_1761373777332.jpg" alt="Two trekkers on mountain ridge" /></div>
+            <div class="case-mini-body">
+              <div class="case-mini-ico">🏔️</div>
+              <h4 class="en">Doi Suthep Night Trek</h4><h4 class="th" style="display:none">เดินป่าดอยสุเทพกลางคืน</h4>
+              <p class="en">Headlamp hike to a forest ridge shrine at 3 AM. Aum cooks breakfast at sunrise.</p>
+              <p class="th" style="display:none">เดินป่าด้วยไฟฉายไปศาลเจ้าบนสันป่าตอนตี 3 อุ้มทำอาหารเช้าพระอาทิตย์ขึ้น</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── TESTIMONIAL ──────────────────── -->
+  <!-- ═══════════════════════════════════════
+       FAQ
+  ═══════════════════════════════════════ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label en">Got Questions?</div>
+        <div class="section-label th" style="display:none">มีคำถามไหม?</div>
+        <h2 class="section-title en">Frequently asked<br/>questions.</h2>
+        <h2 class="section-title th" style="display:none">คำถามที่ถามบ่อย</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="en">Is this suitable for beginners?</span>
+            <span class="th" style="display:none">เหมาะกับมือใหม่ไหม?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p class="en">Absolutely. Aum tailors every trip to your fitness level. Whether you're a first-time trekker or an experienced off-roader, you'll have an incredible time. Just let Aum know in advance.</p>
+            <p class="th" style="display:none">แน่นอน! อุ้มปรับทุกทริปตามระดับความฟิตของคุณ ไม่ว่าคุณจะเป็นมือใหม่หรือมืออาชีพ คุณจะสนุกแน่นอน แค่บอกอุ้มล่วงหน้า</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="en">What about safety?</span>
+            <span class="th" style="display:none">เรื่องความปลอดภัยเป็นอย่างไร?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p class="en">Aum carries first-aid kits, communication equipment, and has extensive safety training. He's led expeditions for 8+ years with zero serious incidents. All vehicles are well-maintained 4×4s with roll cages.</p>
+            <p class="th" style="display:none">อุ้มพกชุดปฐมพยาบาล อุปกรณ์สื่อสาร และได้รับการฝึกอบรมความปลอดภัยอย่างเข้มข้น ขับทัวร์มากว่า 8 ปีโดยไม่มีเหตุการณ์ร้ายแรง รถทุกคันดูแลอย่างดีพร้อมโรลเคจ</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="en">What if it rains?</span>
+            <span class="th" style="display:none">ถ้าฝนตกล่ะ?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p class="en">Rain makes it more epic! Jungle rivers fill up, waterfalls appear, and the scenery transforms. We adjust routes for safety and keep the adventure going. Rain jackets are recommended Jun–Oct.</p>
+            <p class="th" style="display:none">ฝนทำให้สนุกขึ้น! แม่น้ำในป่าจะเต็ม ลำธารกลายเป็นน้ำตก ภูเขาสวยขึ้น เราปรับเส้นทางตามความเหมาะสม ช่วง มิ.ย.-ต.ค. แนะนำเสื้อฝน</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="en">Can I book for a private group?</span>
+            <span class="th" style="display:none">จองสำหรับกลุ่มส่วนตัวได้ไหม?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p class="en">Yes! Private group bookings are available for all experiences. The more people, the better the price per person. Contact Aum directly on WhatsApp to build your custom itinerary.</p>
+            <p class="th" style="display:none">ได้! การจองกลุ่มส่วนตัวทำได้ทุกทริป ยิ่งคนเยอะ ราคาต่อคนยิ่งถูก ติดต่ออุ้มทาง WhatsApp เพื่อออกแบบทริปของคุณ</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="en">Do you offer hotel pick-up?</span>
+            <span class="th" style="display:none">รับจากโรงแรมได้ไหม?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p class="en">Yes, pick-up and drop-off is included for all bookings within Chiang Mai city area. For locations outside Chiang Mai, a small transport supplement may apply.</p>
+            <p class="th" style="display:none">ได้! รับและส่งฟรีในเขตเชียงใหม่ สำหรับนอกเขตเชียงใหม่อาจมีค่าใช้จ่ายเพิ่มเติมเล็กน้อย</p>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="en">What's your cancellation policy?</span>
+            <span class="th" style="display:none">นโยบายยกเลิกเป็นอย่างไร?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p class="en">Full refund if cancelled 48+ hours before. 50% refund within 24–48 hours. No refund within 24 hours, but we can reschedule your adventure anytime within 6 months.</p>
+            <p class="th" style="display:none">คืนเงินเต็มจำนวนถ้ายกเลิก 48 ชม. ก่อน คืน 50% ภายใน 24-48 ชม. ไม่คืนภายใน 24 ชม. แต่สามารถเลื่อนได้ภายใน 6 เดือน</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TESTIMONIALS GRID
+  ═══════════════════════════════════════ -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label en">Traveller Reviews</div>
+        <div class="section-label th" style="display:none">รีวิวจากนักเดินทาง</div>
+        <h2 class="section-title en">Stories from<br/>the trail.</h2>
+        <h2 class="section-title th" style="display:none">เรื่องราว<br/>จากเส้นทาง</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote en">"Aum didn't just show us Thailand — he showed us what it feels like to actually be alive. The fire-cooked fish at midnight, the river crossing at dawn... I've travelled 40 countries and this wrecked all of them."</p>
+          <p class="testi-quote th" style="display:none">"อุ้มไม่ได้พาเราดูเมืองไทย — แต่พาเราสัมผัสความรู้สึกที่จะได้ใช้ชีวิตอย่างแท้จริง ปลาเสียบไฟเที่ยงคืน ข้ามแม่น้ำตอนรุ่งเช้า... ฉันเที่ยว 40 ประเทศ ไม่มีทริปไหนเทียบได้"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">🌍</div>
+            <div>
+              <div class="testi-name en">Sarah K. <span class="testi-flag">🇩🇪</span></div>
+              <div class="testi-name th" style="display:none">ซาร่าห์ เค. <span class="testi-flag">🇩🇪</span></div>
+              <div class="testi-trip en">Summit Shrine Barbarian Run, Mar 2025</div>
+              <div class="testi-trip th" style="display:none">Summit Shrine Barbarian Run, มี.ค. 2025</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote en">"I booked this for my boyfriend's birthday and it was the best decision I ever made. The food Aum cooked over the fire was Michelin-star quality, honestly. The 4×4 route was insane — we laughed the entire time."</p>
+          <p class="testi-quote th" style="display:none">"จองให้แฟนวันเกิด สิ่งที่ดีที่สุดที่เคยตัดสินใจ อาหารที่อุ้มทำบนไฟ ระดับมิชลินจริงๆ เส้นทาง 4×4 แทบไม่น่าเชื่อ หัวเราะตลอดทาง"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">🇬🇧</div>
+            <div>
+              <div class="testi-name en">Mia T. <span class="testi-flag">🇬🇧</span></div>
+              <div class="testi-name th" style="display:none">เมีย ที. <span class="testi-flag">🇬🇧</span></div>
+              <div class="testi-trip en">Barbarian Run Full Day, Jan 2025</div>
+              <div class="testi-trip th" style="display:none">Barbarian Run เต็มวัน, ม.ค. 2025</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote en">"As a solo female traveller I felt completely safe. Aum is professional, warm, and knows every inch of these mountains. I've already booked my second trip. That's how good it was."</p>
+          <p class="testi-quote th" style="display:none">"เป็นผู้หญิงเดินทางคนเดียว รู้สึกปลอดภัยสนิท อุ้มมืออาชีพ อบอุ่น และรู้จักภูเขาทุกตรงม. จองทริปที่สองแล้ว นั่นแหละคือความสนุก"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">🇦🇺</div>
+            <div>
+              <div class="testi-name en">Jessica L. <span class="testi-flag">🇦🇺</span></div>
+              <div class="testi-name th" style="display:none">เจสสิกา แอล. <span class="testi-flag">🇦🇺</span></div>
+              <div class="testi-trip en">Mae Wang River Loop, Feb 2025</div>
+              <div class="testi-trip th" style="display:none">ลูปแม่วัง, ก.พ. 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FIELD NOTES / BLOG
+  ═══════════════════════════════════════ -->
+  <section class="field-notes" id="notes">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label en">From the Trail</div>
+        <div class="section-label th" style="display:none">จากเส้นทาง</div>
+        <h2 class="section-title en">Aum's Field Notes</h2>
+        <h2 class="section-title th" style="display:none">บันทึกภาคสนามของอุ้ม</h2>
+        <p class="section-desc en">Stories, tips, and lessons from the wild.</p>
+        <p class="section-desc th" style="display:none">เรื่องเล่า เคล็ดลับ และบทเรียนจากผืนป่า</p>
+      </div>
+      <div class="notes-grid">
+        <div class="note-card reveal">
+          <div class="note-img" onclick="openLightbox(13)"><img src="FB_IMG_1757957522999.jpg" alt="Mountain valley storm" /></div>
+          <div class="note-body">
+            <div class="note-date en">March 15, 2025</div><div class="note-date th" style="display:none">15 มี.ค. 2568</div>
+            <div class="note-title en">The Night I Cooked Dinner at 2,500 Metres</div>
+            <div class="note-title th" style="display:none">คืนที่ฉันทำอาหารเที่ยงคืนบนความสูง 2,500 เมตร</div>
+            <div class="note-excerpt en">There's something about cooking over an open fire while the valley below is covered in clouds that makes every ingredient taste like a gift...</div>
+            <div class="note-excerpt th" style="display:none">มีบางอย่างเกี่ยวกับการทำอาหารบนไฟกลางแจ้งในขณะที่หุบเขาด้านล่างปกคลุมด้วยเมฆ ทำให้วัตถุดิบทุกอย่างรู้สึกเหมือนของขวัญ...</div>
+            <a href="#" class="note-read en">Read More →</a>
+            <a href="#" class="note-read th" style="display:none">อ่านต่อ →</a>
+          </div>
+        </div>
+        <div class="note-card reveal">
+          <div class="note-img" onclick="openLightbox(7)"><img src="FB_IMG_1757957456791.jpg" alt="Mountain trek ridge" /></div>
+          <div class="note-body">
+            <div class="note-date en">February 28, 2025</div><div class="note-date th" style="display:none">28 ก.พ. 2568</div>
+            <div class="note-title en">5 Things I Wish I Knew Before My First Off-Road Trip</div>
+            <div class="note-title th" style="display:none">5 สิ่งที่อยากรู้ตั้งแต่ทริปออฟรอดแรก</div>
+            <div class="note-excerpt en">After 120+ expeditions, here are the lessons that took me the longest to learn — and the ones I now share with every group that climbs aboard...</div>
+            <div class="note-excerpt th" style="display:none">หลังจากทัวร์กว่า 120 ครั้ง นี่คือบทเรียนที่ใช้เวลานานที่สุดในการเรียนรู้ — และสิ่งที่ตอนนี้แบ่งปันกับทุกกลุ่มที่ขึ้นรถมาด้วย...</div>
+            <a href="#" class="note-read en">Read More →</a>
+            <a href="#" class="note-read th" style="display:none">อ่านต่อ →</a>
+          </div>
+        </div>
+        <div class="note-card reveal">
+          <div class="note-img" onclick="openLightbox(8)"><img src="FB_IMG_1757957661861.jpg" alt="Wild forest berries" /></div>
+          <div class="note-body">
+            <div class="note-date en">January 10, 2025</div><div class="note-date th" style="display:none">10 ม.ค. 2568</div>
+            <div class="note-title en">The Secret Wild Herbs of Northern Thailand</div>
+            <div class="note-title th" style="display:none">สมุนไพรป่าลับของเหนือไทย</div>
+            <div class="note-excerpt en">Most travellers never know the forest floor is a pharmacy, a spice rack, and a medicine cabinet all in one. Here's how to read the jungle's menu...</div>
+            <div class="note-excerpt th" style="display:none">นักเดินทางส่วนใหญ่ไม่เคยรู้ว่าพื้นป่าเป็นร้านขายยา ชั้นเครื่องเทศ และตู้ยาพร้อมกัน นี่คือวิธีอ่านเมนูของป่า...</div>
+            <a href="#" class="note-read en">Read More →</a>
+            <a href="#" class="note-read th" style="display:none">อ่านต่อ →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       MAP
+  ═══════════════════════════════════════ -->
+  <section class="map-section" id="map">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label en">Find Us</div>
+        <div class="section-label th" style="display:none">ติดต่อเรา</div>
+        <h2 class="section-title en">Based in Chiang Mai.<br/>Operating everywhere.</h2>
+        <h2 class="section-title th" style="display:none">อยู่เชียงใหม่<br/>ไปได้ทุกที่</h2>
+      </div>
+      <div class="map-grid">
+        <div class="map-info reveal">
+          <h3 class="en">Start Your Adventure</h3>
+          <h3 class="th" style="display:none">เริ่มผจญภัยของคุณ</h3>
+          <div class="map-item">
+            <div class="map-icon">📍</div>
+            <div class="map-text">
+              <strong class="en">Chiang Mai HQ</strong><strong class="th" style="display:none">สำนักงานเชียงใหม่</strong>
+              Nimman Area, Chiang Mai, Thailand 50200
+            </div>
+          </div>
+          <div class="map-item">
+            <div class="map-icon">📱</div>
+            <div class="map-text">
+              <strong>WhatsApp / LINE</strong>
+              +66 (0) 81 234 5678 · @aumhippie
+            </div>
+          </div>
+          <div class="map-item">
+            <div class="map-icon">⏰</div>
+            <div class="map-text">
+              <strong class="en">Office Hours</strong><strong class="th" style="display:none">เวลาทำการ</strong>
+              Mon–Sat: 8:00 AM – 6:00 PM (ICT)<br />
+              <span class="en">Response within 2 hours</span>
+              <span class="th" style="display:none">ตอบภายใน 2 ชม.</span>
+            </div>
+          </div>
+          <div class="map-item">
+            <div class="map-icon">🌐</div>
+            <div class="map-text">
+              <strong class="en">Operates In</strong><strong class="th" style="display:none">ให้บริการใน</strong>
+              Chiang Mai · Chiang Rai · Mae Hong Son · Lampang · Phrae
+            </div>
+          </div>
+          <a href="https://wa.me/66812345678" class="btn-whatsapp" target="_blank" style="display:inline-flex;margin-top:8px">
+            📞 <span class="en">WhatsApp Aum Now</span><span class="th">แชทวอตสแอปเลย</span>
+          </a>
+        </div>
+        <div class="map-embed reveal">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30265.553!2d98.972!3d18.788!" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Aum Hippie Young Location — Chiang Mai"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SINGLE TESTIMONIAL
+  ═══════════════════════════════════════ -->
   <section class="testimonial">
     <div class="testimonial-bg">
-      <img loading="lazy" src="FB_IMG_1757861355258.jpg" alt="Northern Thailand mountain panorama" />
+      <img src="FB_IMG_1757861355258.jpg" alt="Northern Thailand mountain panorama" />
       <div style="position:absolute;inset:0;background:rgba(17,16,8,0.72)"></div>
     </div>
-    <div class="testimonial-content">
+    <div class="testimonial-content container">
       <span class="quote-mark">"</span>
-      <blockquote>
-        Aum didn't just show us Thailand — he showed us what it feels like to actually be alive. The fire-cooked fish at midnight, the river crossing at dawn... I've travelled 40 countries and this wrecked all of them.
-      </blockquote>
+      <blockquote class="en">Aum didn't just show us Thailand — he showed us what it feels like to actually be alive. The fire-cooked fish at midnight, the river crossing at dawn... I've travelled 40 countries and this wrecked all of them.</blockquote>
+      <blockquote class="th" style="display:none">อุ้มไม่ได้พาเราดูเมืองไทย — แต่พาเราสัมผัสความรู้สึกที่จะได้ใช้ชีวิตอย่างแท้จริง ปลาเสียบไฟเที่ยงคืน ข้ามแม่น้ำตอนรุ่งเช้า... ฉันเที่ยว 40 ประเทศ ไม่มีทริปไหนเทียบได้</blockquote>
       <div class="testimonial-author">
         <div class="author-avatar">🌍</div>
         <div>
-          <div class="author-name">Sarah K. — Berlin, Germany</div>
-          <div class="author-trip">Summit Shrine Barbarian Run, March 2025</div>
+          <div class="author-name en">Sarah K. — Berlin, Germany</div>
+          <div class="author-name th" style="display:none">ซาร่าห์ เค. — เบอร์ลิน, เยอรมนี</div>
+          <div class="author-trip en">Summit Shrine Barbarian Run, March 2025</div>
+          <div class="author-trip th" style="display:none">Summit Shrine Barbarian Run, มี.ค. 2025</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── FOOTER ──────────────────────── -->
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
   <footer id="contact">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">AUM <span>HIPPIE</span> YOUNG</div>
-        <p class="footer-tagline">Freedom adventure tours in Northern Thailand. 4×4, trekking, survival cooking — all guided by Aum the Barbarian Chef.</p>
-        <div class="socials">
-          <a href="#" class="social-btn" aria-label="Facebook">f</a>
-          <a href="#" class="social-btn" aria-label="Instagram">📷</a>
-          <a href="#" class="social-btn" aria-label="LINE">L</a>
-          <a href="#" class="social-btn" aria-label="WhatsApp">W</a>
-        </div>
-      </div>
-
-      <div class="contact-form">
-        <h3>Plan Your Escape</h3>
-        <form onsubmit="handleSubmit(event)">
-          <div class="form-group"><input type="text" placeholder="Your name" required /></div>
-          <div class="form-group"><input type="email" placeholder="Email address" required /></div>
-          <div class="form-group">
-            <select>
-              <option value="" disabled selected>Select an experience</option>
-              <option>4×4 Off-Road Adventure</option>
-              <option>Mountain Trekking</option>
-              <option>Survival Cooking</option>
-              <option>Full Custom Expedition</option>
-            </select>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">AUM <span>HIPPIE</span> YOUNG</div>
+          <p class="footer-tagline en">Freedom adventure tours in Northern Thailand. 4×4, trekking, survival cooking — all guided by Aum the Barbarian Chef.</p>
+          <p class="footer-tagline th" style="display:none">ทัวร์ผจญภัยอิสระในภาคเหนือของประเทศไทย 4×4 เดินป่า ทำอาหารกลางแจ้ง — ทั้งหมดนำโดยอุ้ม เชฟผู้พิชิตผืนป่า</p>
+          <div class="socials">
+            <a href="https://wa.me/66812345678" class="social-btn" target="_blank" aria-label="WhatsApp">📞</a>
+            <a href="https://instagram.com/aumhippie" class="social-btn" target="_blank" aria-label="Instagram">📷</a>
+            <a href="https://line.me/ti/p/@aumhippie" class="social-btn" target="_blank" aria-label="LINE">L</a>
+            <a href="https://facebook.com/aumhippie" class="social-btn" target="_blank" aria-label="Facebook">f</a>
           </div>
-          <div class="form-group"><textarea placeholder="Tell me about your dream trip..."></textarea></div>
-          <button type="submit" class="btn-form" id="submitBtn">🔥 Book a Call</button>
-        </form>
+        </div>
+        <div class="contact-form">
+          <h3 class="en">Plan Your Escape</h3>
+          <h3 class="th" style="display:none">วางแผนการผจญภัยของคุณ</h3>
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-group"><input type="text" placeholder="Your name / ชื่อ" required /></div>
+            <div class="form-group"><input type="email" placeholder="Email address / อีเมล" required /></div>
+            <div class="form-group">
+              <select required>
+                <option value="" disabled selected class="en">Select an experience</option>
+                <option value="" disabled selected class="th" style="display:none">เลือกประสบการณ์</option>
+                <option>4×4 Off-Road Adventure</option>
+                <option>Mountain Trekking</option>
+                <option>Survival Cooking</option>
+                <option>Full Custom Expedition</option>
+              </select>
+            </div>
+            <div class="form-group"><textarea placeholder="Tell me about your dream trip... / บอกเรื่องทริปในฝันของคุณ..."></textarea></div>
+            <button type="submit" class="btn-form en" id="submitBtn">🔥 Book a Call</button>
+            <button type="submit" class="btn-form th" style="display:none" id="submitBtnTh">🔥 จองคอย</button>
+          </form>
+        </div>
+        <div class="offices">
+          <h3 class="en">Find Aum</h3>
+          <h3 class="th" style="display:none">ติดต่ออุ้ม</h3>
+          <div class="office-card">
+            <div class="office-city en">📍 Chiang Mai HQ</div>
+            <div class="office-city th" style="display:none">📍 สำนักงานเชียงใหม่</div>
+            <div class="office-address en">Nimman Area, Chiang Mai<br/>Thailand 50200<br/>+66 (0) 81 234 5678</div>
+            <div class="office-address th" style="display:none">ย่านนิมมาน เชียงใหม่<br/>ประเทศไทย 50200<br/>+66 (0) 81 234 5678</div>
+          </div>
+          <div class="office-card">
+            <div class="office-city en">📍 Doi Inthanon Base</div>
+            <div class="office-city th" style="display:none">📍 ฐานดอยอินทนนท์</div>
+            <div class="office-address en">Chomthong District<br/>Chiang Mai, Thailand<br/>Available by appointment</div>
+            <div class="office-address th" style="display:none">อำเภอจอมทอง<br/>เชียงใหม่ ประเทศไทย<br/>ต้องนัดล่วงหน้า</div>
+          </div>
+          <div class="office-card">
+            <div class="office-city en">⏰ Office Hours</div>
+            <div class="office-city th" style="display:none">⏰ เวลาทำการ</div>
+            <div class="office-address en">Mon–Sat: 8:00 AM – 6:00 PM<br/>Line ID: @aumhippie<br/>WhatsApp: +66812345678<br/>Response within 2 hours</div>
+            <div class="office-address th" style="display:none">จันทร์-เสาร์: 08:00 – 18:00 น.<br/>ไลน์: @aumhippie<br/>วอตสแอป: +66812345678<br/>ตอบภายใน 2 ชม.</div>
+          </div>
+        </div>
       </div>
-
-      <div class="offices">
-        <h3>Find Aum</h3>
-        <div class="office-card">
-          <div class="office-city">📍 Chiang Mai HQ</div>
-          <div class="office-address">Nimman Area, Chiang Mai<br/>Thailand 50200<br/>+66 (0) 81 234 5678</div>
+      <div class="footer-bottom">
+        <p class="footer-copy en">© 2026 Aum Hippie Young. All rights reserved.</p>
+        <p class="footer-copy th" style="display:none">© 2026 Aum Hippie Young. สงวนลิขสิทธิ์</p>
+        <div class="footer-links">
+          <a href="#" class="en">Privacy</a><a href="#" class="th" style="display:none">ความเป็นส่วนตัว</a>
+          <a href="#" class="en">Terms</a><a href="#" class="th" style="display:none">ข้อกำหนด</a>
+          <a href="#" class="en">Booking Policy</a><a href="#" class="th" style="display:none">นโยบายการจอง</a>
         </div>
-        <div class="office-card">
-          <div class="office-city">📍 Doi Inthanon Base</div>
-          <div class="office-address">Chomthong District<br/>Chiang Mai, Thailand<br/>Available by appointment</div>
-        </div>
-        <div class="office-card">
-          <div class="office-city">⏰ Office Hours</div>
-          <div class="office-address">Mon–Sat: 8:00 AM – 6:00 PM<br/>Line ID: @aumhippie<br/>Response within 2 hours</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2026 Aum Hippie Young. All rights reserved. © Photos: Aumhippie Young</p>
-      <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Booking Policy</a>
       </div>
     </div>
   </footer>
 
+  <!-- ═══════════════════════════════════════
+       FLOATING WHATSAPP BUTTON
+  ═══════════════════════════════════════ -->
+  <div class="floating-wa">
+    <div class="wa-tooltip en">Chat with Aum! 💬</div>
+    <div class="wa-tooltip th" style="display:none">แชทกับอุ้ม! 💬</div>
+    <a href="https://wa.me/66812345678?text=Hi%20Aum!%20I%27d%20like%20to%20know%20more%20about%20your%20adventures" class="wa-btn" target="_blank" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.004 0C7.164 0 .003 7.16.003 16c0 2.83.73 5.53 2.12 7.88L.48 30.07l6.04-1.58A15.92 15.92 0 0016.004 32C24.842 32 32 24.84 32 16S24.842 0 16.004 0zm9.34 22.65c-.42 1.17-2.01 2.15-3.3 2.44-1.27.29-2.9.42-4.78-.49-.96-.47-1.87-1.17-2.66-1.95-.77-.76-1.37-1.62-1.79-2.57-.43-.98-.48-2.01-.15-2.37.33-.36 1.1-.58 2.08-.02.63.36 1.33.84 1.86 1.21.56.39 1.04.65 1.26.72.21.07.46.03.63-.08.22-.15.53-.39.88-.65 1.01-.75 1.68-1.21 2.25-1.6.44-.3.81-.5 1.11-.63.39-.17.83-.12 1.19.11.35.22.56.56.65.97.09.41.12.84-.02 1.28-.17.54-.48 1.3-1.02 2.08-.48.69-.93 1.18-1.23 1.49z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════ -->
   <script>
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.08 });
-
-    document.querySelectorAll('.service-card, .case-card-main, .case-mini, .skill-item, .gallery-cell').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(28px)';
-      el.style.transition = 'opacity 0.65s ease, transform 0.65s ease';
-      observer.observe(el);
-    });
-
-    // Form submit
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.textContent = '✅ Request Sent! Aum will reach out soon.';
-      btn.style.background = '#2A7A2A';
-      btn.disabled = true;
+    // ── Language Toggle ──────────────────────
+    function setLang(lang) {
+      document.body.dataset.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
     }
 
-    // Nav active highlight
+    // ── Mobile Nav ───────────────────────────
+    function toggleMobile() {
+      document.getElementById('mobileNav').classList.toggle('open');
+    }
+
+    // ── Scroll Reveal ─────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Nav Scroll ────────────────────────────
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── FAQ Accordion ─────────────────────────
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    // ── Lightbox ──────────────────────────────
+    const galleryImages = [
+      'FB_IMG_1757957454305.jpg',
+      'FB_IMG_1757861350967.jpg',
+      'FB_IMG_1757957480622.jpg',
+      'FB_IMG_1757957541732.jpg',
+      'FB_IMG_1761065629031.jpg',
+      'FB_IMG_1761373777332.jpg',
+      'IMG20260119084647.jpg',
+      'FB_IMG_1757957456791.jpg',
+      'FB_IMG_1757957661861.jpg',
+      'FB_IMG_1759252997546.jpg',
+      'FB_IMG_1757957470679.jpg',
+      'FB_IMG_1757861355258.jpg',
+      'FB_IMG_1754872694887.jpg',
+      'FB_IMG_1757957522999.jpg',
+      'FB_IMG_1761065633775.jpg',
+    ];
+    let currentImage = 0;
+
+    function openLightbox(index) {
+      currentImage = index;
+      document.getElementById('lightboxImg').src = galleryImages[index];
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function lightboxNav(dir) {
+      currentImage = (currentImage + dir + galleryImages.length) % galleryImages.length;
+      document.getElementById('lightboxImg').src = galleryImages[currentImage];
+    }
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lightboxNav(-1);
+      if (e.key === 'ArrowRight') lightboxNav(1);
+    });
+
+    // ── Form Submit → WhatsApp ─────────────────
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.querySelector('input[type="text"]').value;
+      const email = form.querySelector('input[type="email"]').value;
+      const experience = form.querySelector('select').value;
+      const message = form.querySelector('textarea').value || '';
+      const lang = document.body.dataset.lang;
+
+      const waMessage = lang === 'th'
+        ? `สวัสดีอุ้ม! ฉันชื่อ ${name} (${email}) สนใจ: ${experience}${message ? '\n\nรายละเอียดเพิ่มเติม: ' + message : ''}`
+        : `Hi Aum! My name is ${name} (${email}). I'm interested in: ${experience}${message ? '\n\nMore details: ' + message : ''}`;
+
+      const waUrl = `https://wa.me/66812345678?text=${encodeURIComponent(waMessage)}`;
+      window.open(waUrl, '_blank');
+
+      const btn = document.getElementById('submitBtn');
+      const btnTh = document.getElementById('submitBtnTh');
+      if (btn) { btn.textContent = '✅ Redirecting to WhatsApp...'; btn.disabled = true; }
+      if (btnTh) { btnTh.textContent = '✅ กำลังเปิด WhatsApp...'; btnTh.disabled = true; }
+    }
+
+    // ── Nav active highlight ──────────────────
     const sections = document.querySelectorAll('section[id], footer[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
       let cur = '';
-      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
-      navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--terra)' : '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        const href = a.getAttribute('href');
+        a.style.color = href === '#' + cur ? 'var(--terra)' : '';
       });
     });
   </script>
